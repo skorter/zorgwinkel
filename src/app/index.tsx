@@ -1,128 +1,105 @@
-// TEMPORARY test screen (Phase 2 and 3). Replaced by the real Home later.
-// Tests the Supabase connection, the display settings and the languages.
-import { useState } from "react";
+// TEMPORARY test screen (Phase 3). Shows the shared components so they
+// can be checked in every colour mode and text size.
+// Replaced by the real Home in a later step.
+import {
+  CalendarDays,
+  MessageSquareText,
+  Pill,
+  User,
+} from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Text, View } from "react-native";
+import { AppButton } from "../components/AppButton";
+import { BigTile } from "../components/BigTile";
+import { Screen } from "../components/Screen";
+import { TopBar } from "../components/TopBar";
 import { useDisplay, type Language } from "../context/DisplayContext";
-import { supabase } from "../lib/supabase";
 import { useAppTheme, type ColourMode, type TextSize } from "../theme";
 
 export default function Index() {
   const { t } = useTranslation();
-  const theme = useAppTheme();
-  const { text, colors, spacing } = theme.app;
+  const { colors, text, spacing } = useAppTheme().app;
   const { colourMode, textSize, language, update } = useDisplay();
-  const [lines, setLines] = useState<string[]>([]);
 
-  async function testConnection() {
-    const result: string[] = [];
-    await supabase.auth.signOut();
-    const blocked = await supabase.from("medicines").select("name");
-    result.push(
-      blocked.error || blocked.data?.length === 0
-        ? "Without login: blocked (good)"
-        : "Without login: data visible (security problem!)",
-    );
-    const login = await supabase.auth.signInWithPassword({
-      email: process.env.EXPO_PUBLIC_TEST_EMAIL ?? "",
-      password: process.env.EXPO_PUBLIC_TEST_PASSWORD ?? "",
-    });
-    if (login.error) {
-      setLines([...result, "Login failed: " + login.error.message]);
-      return;
-    }
-    const medicines = await supabase
-      .from("medicines")
-      .select("name")
-      .order("name");
-    if (medicines.error) {
-      setLines([...result, "Reading failed: " + medicines.error.message]);
-      return;
-    }
-    setLines([...result, ...medicines.data.map((m) => m.name)]);
-  }
-
+  const nothing = () => {};
+  const languages: Language[] = ["en", "nl"];
   const modes: ColourMode[] = ["light", "dark", "highContrast"];
   const sizes: TextSize[] = ["normal", "large", "extraLarge"];
-  const languageNames: Record<Language, string> = {
-    en: "English",
-    nl: "Nederlands",
-    tr: "Türkçe",
-    ar: "العربية",
-  };
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        padding: spacing.lg,
-        paddingTop: 64,
-        gap: spacing.md,
-      }}
-    >
-      <Text style={[text.title, { color: colors.text }]}>
+    <Screen topBar={<TopBar variant="home" basketCount={1} />}>
+      <Text
+        accessibilityRole="header"
+        style={[text.title, { color: colors.text }]}
+      >
         {t("home.goodMorning")}
       </Text>
-      <Text style={[text.heading, { color: colors.text }]}>
+      <Text
+        accessibilityRole="header"
+        style={[text.heading, { color: colors.text }]}
+      >
         {t("home.whatDoYouNeed")}
       </Text>
-      <Text style={[text.body, { color: colors.textMuted }]}>
-        {t("display.preview")}
-      </Text>
 
-      <Text style={[text.label, { color: colors.textMuted }]}>
-        {t("display.language")}
-      </Text>
+      <View style={{ flexDirection: "row", gap: spacing.md }}>
+        <BigTile
+          label={t("home.appointments")}
+          icon={CalendarDays}
+          color={colors.tileAppointments}
+          onPress={nothing}
+        />
+        <BigTile
+          label={t("home.medicines")}
+          icon={Pill}
+          color={colors.tileMedicines}
+          onPress={nothing}
+        />
+      </View>
+      <View style={{ flexDirection: "row", gap: spacing.md }}>
+        <BigTile
+          label={t("home.messages")}
+          icon={MessageSquareText}
+          color={colors.tileMessages}
+          onPress={nothing}
+        />
+        <BigTile
+          label={t("home.askSomeone")}
+          icon={User}
+          color={colors.tileAsk}
+          onPress={nothing}
+        />
+      </View>
+
+      <AppButton label={t("common.next")} onPress={nothing} />
+      <AppButton label={t("common.back")} onPress={nothing} variant="outline" />
+
+      {/* Test switches, removed with this screen. */}
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
-        {(Object.keys(languageNames) as Language[]).map((code) => (
-          <Button
+        {languages.map((code) => (
+          <AppButton
             key={code}
-            mode={code === language ? "contained" : "outlined"}
+            label={code}
+            variant={code === language ? "primary" : "outline"}
             onPress={() => update({ language: code })}
-          >
-            {languageNames[code]}
-          </Button>
+          />
         ))}
-      </View>
-
-      <Text style={[text.label, { color: colors.textMuted }]}>
-        {t("display.colours")}
-      </Text>
-      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
         {modes.map((mode) => (
-          <Button
+          <AppButton
             key={mode}
-            mode={mode === colourMode ? "contained" : "outlined"}
+            label={t(`display.${mode}`)}
+            variant={mode === colourMode ? "primary" : "outline"}
             onPress={() => update({ colourMode: mode })}
-          >
-            {t(`display.${mode}`)}
-          </Button>
+          />
         ))}
-      </View>
-
-      <Text style={[text.label, { color: colors.textMuted }]}>
-        {t("display.textSize")}
-      </Text>
-      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
         {sizes.map((size) => (
-          <Button
+          <AppButton
             key={size}
-            mode={size === textSize ? "contained" : "outlined"}
+            label={t(`display.${size}`)}
+            variant={size === textSize ? "primary" : "outline"}
             onPress={() => update({ textSize: size })}
-          >
-            {t(`display.${size}`)}
-          </Button>
+          />
         ))}
       </View>
-
-      <Button mode="contained" onPress={testConnection}>
-        Test connection
-      </Button>
-      {lines.map((line, i) => (
-        <Text key={i} style={[text.body, { color: colors.text }]}>
-          {line}
-        </Text>
-      ))}
-    </ScrollView>
+    </Screen>
   );
 }
