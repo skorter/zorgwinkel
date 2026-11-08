@@ -7,7 +7,8 @@
     "next": "Volgende",
     "done": "Klaar",
     "askRealPerson": "Vraag het een mens",
-    "languageAndDisplay": "Taal en weergave"
+    "languageAndDisplay": "Taal en weergave",
+    "changeLanguage": "Taal veranderen"
   },
   "welcome": {
     "title": "Welkom bij Zorgwinkel",

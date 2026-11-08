@@ -7,7 +7,8 @@
     "next": "Next",
     "done": "Done",
     "askRealPerson": "Ask a real person",
-    "languageAndDisplay": "Language and display"
+    "languageAndDisplay": "Language and display",
+    "changeLanguage": "Change language"
   },
   "welcome": {
     "title": "Welcome to Zorgwinkel",

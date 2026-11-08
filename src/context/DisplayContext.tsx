@@ -17,6 +17,14 @@ import type { ColourMode, TextSize } from "../theme";
 export type Language = "en" | "nl" | "tr" | "ar";
 export const languages: Language[] = ["en", "nl", "tr", "ar"];
 
+// Each language in its own language, so everyone can find theirs.
+export const languageNames: Record<Language, string> = {
+  en: "English",
+  nl: "Nederlands",
+  tr: "Türkçe",
+  ar: "العربية",
+};
+
 export type DisplaySettings = {
   language: Language;
   textSize: TextSize;

@@ -78,6 +78,11 @@ export default function Index() {
       <AppButton label={t("common.back")} onPress={nothing} variant="outline" />
 
       {/* Test switches, removed with this screen. */}
+      <AppButton
+        label="Restart setup (test)"
+        variant="outline"
+        onPress={() => update({ setupDone: false })}
+      />
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
         {languages.map((code) => (
           <AppButton
