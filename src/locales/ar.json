@@ -1,0 +1,78 @@
+{
+  "common": {
+    "appName": "Zorgwinkel",
+    "back": "رجوع",
+    "basket": "السلة",
+    "basketCount": "السلة، {{count}} عناصر",
+    "next": "التالي",
+    "done": "تم",
+    "askRealPerson": "اسأل شخصًا حقيقيًا",
+    "languageAndDisplay": "اللغة والعرض",
+    "changeLanguage": "تغيير اللغة",
+    "backToHome": "العودة إلى الشاشة الرئيسية",
+    "ok": "حسنًا"
+  },
+  "welcome": {
+    "title": "مرحبًا بك في Zorgwinkel",
+    "subtitle": "رتّب رعايتك الصحية من المنزل، كما لو كنت تتسوّق.",
+    "featureAppointment": "احجز موعدًا مع طبيب العائلة",
+    "featureMedicine": "اطلب أدويتك مرة أخرى",
+    "featureCheck": "راجع كل شيء قبل الإرسال",
+    "disclaimer": "لا يقدّم Zorgwinkel نصائح طبية. لذلك تحدّث مع طبيب العائلة.",
+    "getStarted": "ابدأ"
+  },
+  "language": {
+    "title": "اختر لغتك",
+    "reloadText": "سيُعاد تشغيل التطبيق الآن لتغيير اتجاه القراءة."
+  },
+  "display": {
+    "title": "اجعل التطبيق سهل القراءة",
+    "subtitle": "اختر ما هو أسهل لك. يمكنك تغيير ذلك لاحقًا.",
+    "language": "اللغة",
+    "textSize": "حجم النص",
+    "normal": "عادي",
+    "large": "كبير",
+    "extraLarge": "كبير جدًا",
+    "preview": "هكذا سيبدو النص.",
+    "colours": "الألوان",
+    "light": "فاتح",
+    "dark": "داكن",
+    "highContrast": "تباين عالٍ"
+  },
+  "ready": {
+    "title": "أنت جاهز.",
+    "text": "يمكنك تغيير هذه الإعدادات في أي وقت من خلال اللغة والعرض.",
+    "goHome": "اذهب إلى الشاشة الرئيسية"
+  },
+  "home": {
+    "goodMorning": "صباح الخير.",
+    "goodAfternoon": "مساء الخير.",
+    "goodEvening": "مساء الخير.",
+    "goodMorningName": "صباح الخير، {{name}}.",
+    "goodAfternoonName": "مساء الخير، {{name}}.",
+    "goodEveningName": "مساء الخير، {{name}}.",
+    "nextAppointment": "موعدك القادم",
+    "whatDoYouNeed": "ماذا تحتاج اليوم؟",
+    "noteTitle": "احجز كل شيء هنا.",
+    "noteText": "لا حاجة إلى الاتصال الهاتفي.",
+    "appointments": "المواعيد",
+    "medicines": "الأدوية",
+    "messages": "الرسائل",
+    "askSomeone": "اسأل أحدًا"
+  },
+  "practice": {
+    "openingHours": "مفتوح من الاثنين إلى الجمعة، 8:00–17:00",
+    "days": "من الاثنين إلى الجمعة",
+    "hours": "8:00–17:00"
+  },
+  "help": {
+    "title": "اسأل شخصًا حقيقيًا",
+    "subtitle": "تحدّث مع أحد العاملين في عيادة طبيب العائلة.",
+    "callThePractice": "اتصل بالعيادة",
+    "callMeBack": "اتصلوا بي"
+  },
+  "callback": {
+    "title": "تم. ستتصل بك العيادة.",
+    "text": "عادةً خلال ساعتين في أيام العمل. أبقِ هاتفك قريبًا منك."
+  }
+}

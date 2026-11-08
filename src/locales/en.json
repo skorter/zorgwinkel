@@ -1,0 +1,78 @@
+{
+  "common": {
+    "appName": "Zorgwinkel",
+    "back": "Back",
+    "basket": "Basket",
+    "basketCount": "Basket, {{count}} items",
+    "next": "Next",
+    "done": "Done",
+    "askRealPerson": "Ask a real person",
+    "languageAndDisplay": "Language and display",
+    "changeLanguage": "Change language",
+    "backToHome": "Back to home",
+    "ok": "OK"
+  },
+  "welcome": {
+    "title": "Welcome to Zorgwinkel",
+    "subtitle": "Arrange your care from home, like doing your shopping.",
+    "featureAppointment": "Book an appointment with your GP",
+    "featureMedicine": "Order your medicines again",
+    "featureCheck": "Check everything before you send it",
+    "disclaimer": "Zorgwinkel does not give medical advice. For that, you talk to your GP.",
+    "getStarted": "Get started"
+  },
+  "language": {
+    "title": "Choose your language",
+    "reloadText": "The app restarts now to change the reading direction."
+  },
+  "display": {
+    "title": "Make the app easy to read",
+    "subtitle": "Choose what is easiest for you. You can change this later.",
+    "language": "Language",
+    "textSize": "Text size",
+    "normal": "Normal",
+    "large": "Large",
+    "extraLarge": "Extra large",
+    "preview": "This is how your text will look.",
+    "colours": "Colours",
+    "light": "Light",
+    "dark": "Dark",
+    "highContrast": "High contrast"
+  },
+  "ready": {
+    "title": "You're ready.",
+    "text": "You can change these settings at any time under Language and display.",
+    "goHome": "Go to the home screen"
+  },
+  "home": {
+    "goodMorning": "Good morning.",
+    "goodAfternoon": "Good afternoon.",
+    "goodEvening": "Good evening.",
+    "goodMorningName": "Good morning, {{name}}.",
+    "goodAfternoonName": "Good afternoon, {{name}}.",
+    "goodEveningName": "Good evening, {{name}}.",
+    "nextAppointment": "Your next appointment",
+    "whatDoYouNeed": "What do you need today?",
+    "noteTitle": "Book everything here.",
+    "noteText": "No phone call needed.",
+    "appointments": "Appointments",
+    "medicines": "Medicines",
+    "messages": "Messages",
+    "askSomeone": "Ask someone"
+  },
+  "practice": {
+    "openingHours": "Open Monday to Friday, 8:00 to 17:00",
+    "days": "Monday to Friday",
+    "hours": "8:00–17:00"
+  },
+  "help": {
+    "title": "Ask a real person",
+    "subtitle": "Talk to someone at your GP practice.",
+    "callThePractice": "Call the practice",
+    "callMeBack": "Call me back"
+  },
+  "callback": {
+    "title": "Done. The practice will call you back.",
+    "text": "Usually within 2 hours on working days. Keep your phone nearby."
+  }
+}

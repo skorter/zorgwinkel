@@ -1,0 +1,78 @@
+{
+  "common": {
+    "appName": "Zorgwinkel",
+    "back": "Geri",
+    "basket": "Sepet",
+    "basketCount": "Sepet, {{count}} öğe",
+    "next": "İleri",
+    "done": "Tamam",
+    "askRealPerson": "Bir insana sorun",
+    "languageAndDisplay": "Dil ve görünüm",
+    "changeLanguage": "Dili değiştir",
+    "backToHome": "Ana ekrana dön",
+    "ok": "Tamam"
+  },
+  "welcome": {
+    "title": "Zorgwinkel'e hoş geldiniz",
+    "subtitle": "Sağlık işlerinizi evden halledin, alışveriş yapar gibi.",
+    "featureAppointment": "Aile hekiminizden randevu alın",
+    "featureMedicine": "İlaçlarınızı yeniden sipariş edin",
+    "featureCheck": "Göndermeden önce her şeyi kontrol edin",
+    "disclaimer": "Zorgwinkel tıbbi tavsiye vermez. Bunun için aile hekiminizle konuşun.",
+    "getStarted": "Başlayın"
+  },
+  "language": {
+    "title": "Dilinizi seçin",
+    "reloadText": "Okuma yönünü değiştirmek için uygulama şimdi yeniden başlıyor."
+  },
+  "display": {
+    "title": "Uygulamayı kolay okunur yapın",
+    "subtitle": "Sizin için en kolay olanı seçin. Bunu daha sonra değiştirebilirsiniz.",
+    "language": "Dil",
+    "textSize": "Yazı boyutu",
+    "normal": "Normal",
+    "large": "Büyük",
+    "extraLarge": "Çok büyük",
+    "preview": "Yazınız böyle görünecek.",
+    "colours": "Renkler",
+    "light": "Açık",
+    "dark": "Koyu",
+    "highContrast": "Yüksek kontrast"
+  },
+  "ready": {
+    "title": "Hazırsınız.",
+    "text": "Bu ayarları istediğiniz zaman Dil ve görünüm bölümünden değiştirebilirsiniz.",
+    "goHome": "Ana ekrana git"
+  },
+  "home": {
+    "goodMorning": "Günaydın.",
+    "goodAfternoon": "İyi günler.",
+    "goodEvening": "İyi akşamlar.",
+    "goodMorningName": "Günaydın, {{name}}.",
+    "goodAfternoonName": "İyi günler, {{name}}.",
+    "goodEveningName": "İyi akşamlar, {{name}}.",
+    "nextAppointment": "Sonraki randevunuz",
+    "whatDoYouNeed": "Bugün neye ihtiyacınız var?",
+    "noteTitle": "Her şeyi buradan ayarlayın.",
+    "noteText": "Telefon etmenize gerek yok.",
+    "appointments": "Randevular",
+    "medicines": "İlaçlar",
+    "messages": "Mesajlar",
+    "askSomeone": "Birine sorun"
+  },
+  "practice": {
+    "openingHours": "Pazartesi–Cuma açık, 8:00–17:00",
+    "days": "Pazartesi–Cuma",
+    "hours": "8:00–17:00"
+  },
+  "help": {
+    "title": "Bir insana sorun",
+    "subtitle": "Aile hekimi muayenehanenizden biriyle konuşun.",
+    "callThePractice": "Muayenehaneyi arayın",
+    "callMeBack": "Beni geri arayın"
+  },
+  "callback": {
+    "title": "Tamam. Muayenehane sizi geri arayacak.",
+    "text": "İş günlerinde genellikle 2 saat içinde. Telefonunuzu yakınınızda tutun."
+  }
+}

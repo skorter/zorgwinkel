@@ -1,0 +1,78 @@
+{
+  "common": {
+    "appName": "Zorgwinkel",
+    "back": "Terug",
+    "basket": "Mandje",
+    "basketCount": "Mandje, {{count}} dingen",
+    "next": "Volgende",
+    "done": "Klaar",
+    "askRealPerson": "Vraag het een mens",
+    "languageAndDisplay": "Taal en weergave",
+    "changeLanguage": "Taal veranderen",
+    "backToHome": "Terug naar het beginscherm",
+    "ok": "OK"
+  },
+  "welcome": {
+    "title": "Welkom bij Zorgwinkel",
+    "subtitle": "Regel uw zorg vanuit huis, zoals boodschappen doen.",
+    "featureAppointment": "Maak een afspraak met uw huisarts",
+    "featureMedicine": "Bestel uw medicijnen opnieuw",
+    "featureCheck": "Controleer alles voordat u het verstuurt",
+    "disclaimer": "Zorgwinkel geeft geen medisch advies. Daarvoor praat u met uw huisarts.",
+    "getStarted": "Beginnen"
+  },
+  "language": {
+    "title": "Kies uw taal",
+    "reloadText": "De app start nu opnieuw om de leesrichting te veranderen."
+  },
+  "display": {
+    "title": "Maak de app makkelijk te lezen",
+    "subtitle": "Kies wat voor u het makkelijkst is. U kunt dit later veranderen.",
+    "language": "Taal",
+    "textSize": "Tekstgrootte",
+    "normal": "Normaal",
+    "large": "Groot",
+    "extraLarge": "Extra groot",
+    "preview": "Zo ziet uw tekst eruit.",
+    "colours": "Kleuren",
+    "light": "Licht",
+    "dark": "Donker",
+    "highContrast": "Hoog contrast"
+  },
+  "ready": {
+    "title": "U bent klaar.",
+    "text": "U kunt deze instellingen altijd veranderen onder Taal en weergave.",
+    "goHome": "Naar het beginscherm"
+  },
+  "home": {
+    "goodMorning": "Goedemorgen.",
+    "goodAfternoon": "Goedemiddag.",
+    "goodEvening": "Goedenavond.",
+    "goodMorningName": "Goedemorgen, {{name}}.",
+    "goodAfternoonName": "Goedemiddag, {{name}}.",
+    "goodEveningName": "Goedenavond, {{name}}.",
+    "nextAppointment": "Uw volgende afspraak",
+    "whatDoYouNeed": "Wat heeft u vandaag nodig?",
+    "noteTitle": "Regel alles hier.",
+    "noteText": "U hoeft niet te bellen.",
+    "appointments": "Afspraken",
+    "medicines": "Medicijnen",
+    "messages": "Berichten",
+    "askSomeone": "Vraag iemand"
+  },
+  "practice": {
+    "openingHours": "Open maandag tot en met vrijdag, 8:00 tot 17:00",
+    "days": "Maandag tot en met vrijdag",
+    "hours": "8:00–17:00"
+  },
+  "help": {
+    "title": "Vraag het een mens",
+    "subtitle": "Praat met iemand van uw huisartsenpraktijk.",
+    "callThePractice": "Bel de praktijk",
+    "callMeBack": "Bel mij terug"
+  },
+  "callback": {
+    "title": "Klaar. De praktijk belt u terug.",
+    "text": "Meestal binnen 2 uur op werkdagen. Houd uw telefoon in de buurt."
+  }
+}
