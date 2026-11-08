@@ -108,5 +108,17 @@
     "yourGp": "aile hekiminiz",
     "nurse": "muayenehane hemşiresi",
     "repeatMedicine": "Tekrar ilaç"
+  },
+  "basket": {
+    "title": "Sepetiniz",
+    "subtitle": "Göndermeden önce talebinizi kontrol edin.",
+    "change": "Değiştir",
+    "remove": "Kaldır",
+    "changeA11y": "Bu randevuyu değiştir",
+    "removeA11y": "Bunu sepetinizden kaldırın",
+    "removeTitle": "Sepetinizden kaldırılsın mı?",
+    "keep": "Kalsın",
+    "send": "Talebi gönder",
+    "empty": "Sepetiniz boş."
   }
 }

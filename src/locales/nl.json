@@ -109,5 +109,17 @@
     "yourGp": "uw huisarts",
     "nurse": "de praktijkverpleegkundige",
     "repeatMedicine": "Herhaalrecept"
+  },
+  "basket": {
+    "title": "Uw mandje",
+    "subtitle": "Kijk uw aanvraag na voordat u die verstuurt.",
+    "change": "Wijzigen",
+    "remove": "Verwijderen",
+    "changeA11y": "Deze afspraak wijzigen",
+    "removeA11y": "Dit uit uw mandje halen",
+    "removeTitle": "Uit uw mandje halen?",
+    "keep": "Laten staan",
+    "send": "Aanvraag versturen",
+    "empty": "Uw mandje is leeg."
   }
 }

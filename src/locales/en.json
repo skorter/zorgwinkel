@@ -109,5 +109,17 @@
     "yourGp": "your GP",
     "nurse": "the practice nurse",
     "repeatMedicine": "Repeat medicine"
+  },
+  "basket": {
+    "title": "Your basket",
+    "subtitle": "Check your request before you send it.",
+    "change": "Change",
+    "remove": "Remove",
+    "changeA11y": "Change this appointment",
+    "removeA11y": "Remove this from your basket",
+    "removeTitle": "Remove from your basket?",
+    "keep": "Keep it",
+    "send": "Send request",
+    "empty": "Your basket is empty."
   }
 }
