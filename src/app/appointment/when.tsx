@@ -19,18 +19,11 @@ import {
   type Reason,
   useBasket,
 } from "../../context/BasketContext";
+import { formatDay, toDateString } from "../../lib/dates";
 import { useAppTheme } from "../../theme";
 
 // How many working days the patient can choose from.
 const DAYS_TO_SHOW = 5;
-
-// "2026-11-09", in the phone's own time zone. (toISOString() uses UTC,
-// which can give yesterday's date shortly after midnight.)
-function toDateString(d: Date) {
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${d.getFullYear()}-${month}-${day}`;
-}
 
 // The next working days, starting tomorrow: submit_basket only accepts
 // dates after today, and a GP practice is closed at the weekend.
@@ -73,14 +66,7 @@ export default function WhenWouldYouLikeToCome() {
     before?.partOfDay ?? null,
   );
 
-  // English in the British order (Tuesday 17 June), as on Home.
-  const locale = i18n.language === "en" ? "en-GB" : i18n.language;
-  const dayLabel = (d: Date) =>
-    d.toLocaleDateString(locale, {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-    });
+  const dayLabel = (d: Date) => formatDay(d, i18n.language);
 
   function addToBasket() {
     if (!date || !partOfDay) return;
@@ -98,11 +84,11 @@ export default function WhenWouldYouLikeToCome() {
       change(editing.id, { kind: "appointment", appointment });
       router.dismissTo("/basket");
     } else {
-      add({ kind: "appointment", appointment });
+      const id = add({ kind: "appointment", appointment });
       // Close the three steps, so Back on the next screen does not
-      // lead into the finished flow again, then show 1.4.
+      // lead into the finished flow again, then show 1.4 with this item.
       router.dismissAll();
-      router.push("/added");
+      router.push({ pathname: "/added", params: { id } });
     }
   }
 

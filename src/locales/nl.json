@@ -98,5 +98,16 @@
     "morning": "Ochtend",
     "afternoon": "Middag",
     "addToBasket": "In het mandje doen"
+  },
+  "added": {
+    "title": "In uw mandje gedaan",
+    "notSentYet": "Het wordt pas verstuurd als u uw mandje nakijkt.",
+    "goToBasket": "Naar het mandje"
+  },
+  "basketItem": {
+    "appointmentWith": "Afspraak met {{name}}",
+    "yourGp": "uw huisarts",
+    "nurse": "de praktijkverpleegkundige",
+    "repeatMedicine": "Herhaalrecept"
   }
 }

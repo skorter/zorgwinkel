@@ -97,5 +97,16 @@
     "morning": "Sabah",
     "afternoon": "Öğleden sonra",
     "addToBasket": "Sepete ekle"
+  },
+  "added": {
+    "title": "Sepetinize eklendi",
+    "notSentYet": "Sepetinizi kontrol ettiğinizde gönderilecek.",
+    "goToBasket": "Sepete git"
+  },
+  "basketItem": {
+    "appointmentWith": "{{name}} ile randevu",
+    "yourGp": "aile hekiminiz",
+    "nurse": "muayenehane hemşiresi",
+    "repeatMedicine": "Tekrar ilaç"
   }
 }

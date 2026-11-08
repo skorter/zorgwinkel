@@ -98,5 +98,16 @@
     "morning": "Morning",
     "afternoon": "Afternoon",
     "addToBasket": "Add to basket"
+  },
+  "added": {
+    "title": "Added to your basket",
+    "notSentYet": "It will be sent when you check your basket.",
+    "goToBasket": "Go to basket"
+  },
+  "basketItem": {
+    "appointmentWith": "Appointment with {{name}}",
+    "yourGp": "your GP",
+    "nurse": "the practice nurse",
+    "repeatMedicine": "Repeat medicine"
   }
 }

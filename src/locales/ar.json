@@ -97,5 +97,16 @@
     "morning": "صباحاً",
     "afternoon": "بعد الظهر",
     "addToBasket": "أضف إلى السلة"
+  },
+  "added": {
+    "title": "أُضيف إلى سلتك",
+    "notSentYet": "سيُرسل عندما تراجع سلتك.",
+    "goToBasket": "اذهب إلى السلة"
+  },
+  "basketItem": {
+    "appointmentWith": "موعد مع {{name}}",
+    "yourGp": "طبيبك العام",
+    "nurse": "ممرضة العيادة",
+    "repeatMedicine": "تكرار الدواء"
   }
 }
