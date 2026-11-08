@@ -33,10 +33,10 @@ export default function RootLayout() {
 }
 
 function ThemedApp() {
-  const { loaded, colourMode, textSize, setupDone } = useDisplay();
+  const { loaded, colourMode, textSize, setupDone, language } = useDisplay();
   if (!loaded) return null;
 
-  const theme = makeTheme(colourMode, textSize);
+  const theme = makeTheme(colourMode, textSize, language);
 
   return (
     <PaperProvider theme={theme}>

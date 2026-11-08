@@ -5,6 +5,7 @@
 // Colours are taken from the Figma design (Design Iteration 2).
 // Every text colour has a contrast of at least 4.5:1 on its background,
 // and borderStrong at least 3:1 (WCAG 2.2 AA), in all three palettes.
+import { Platform } from "react-native";
 import {
   MD3DarkTheme,
   MD3LightTheme,
@@ -120,7 +121,21 @@ export const fonts = {
   bold: "PublicSans_700Bold",
 };
 
-const baseText = {
+// One text style. fontWeight is only used for Arabic (see below).
+export type AppTextStyle = {
+  fontFamily: string;
+  fontSize: number;
+  lineHeight: number;
+  fontWeight?: "400" | "600" | "700";
+  letterSpacing?: number;
+  textTransform?: "uppercase";
+};
+export type TextStyles = Record<
+  "title" | "heading" | "body" | "bodyStrong" | "label",
+  AppTextStyle
+>;
+
+const baseText: TextStyles = {
   title: { fontFamily: fonts.bold, fontSize: 28, lineHeight: 34 },
   heading: { fontFamily: fonts.bold, fontSize: 20, lineHeight: 26 },
   body: { fontFamily: fonts.regular, fontSize: 16, lineHeight: 22 },
@@ -133,7 +148,6 @@ const baseText = {
     textTransform: "uppercase" as const, // "LANGUAGE", "YOUR NEXT APPOINTMENT"
   },
 };
-export type TextStyles = typeof baseText;
 
 // Normal, Large and Extra large from screen 4.5. This comes on top of
 // the phone's own text size setting, which React Native follows anyway.
@@ -143,7 +157,20 @@ export const textScale: Record<TextSize, number> = {
   extraLarge: 1.5,
 };
 
-function scaleText(scale: number): TextStyles {
+// Public Sans has no Arabic letters. In Arabic the phone's own font is
+// used instead, with the same weights, so headings stay bold.
+// Letter spacing is removed: it breaks the joined Arabic letters apart.
+const systemFont = Platform.select({
+  android: "sans-serif",
+  default: "System",
+});
+const weightOf: Record<string, "400" | "600" | "700"> = {
+  [fonts.regular]: "400",
+  [fonts.semiBold]: "600",
+  [fonts.bold]: "700",
+};
+
+function scaleText(scale: number, arabic: boolean): TextStyles {
   const scaled = {} as TextStyles;
   for (const key of Object.keys(baseText) as (keyof TextStyles)[]) {
     const style = baseText[key];
@@ -151,7 +178,12 @@ function scaleText(scale: number): TextStyles {
       ...style,
       fontSize: style.fontSize * scale,
       lineHeight: Math.round(style.lineHeight * scale),
-    } as never;
+      ...(arabic && {
+        fontFamily: systemFont,
+        fontWeight: weightOf[style.fontFamily],
+        letterSpacing: 0,
+      }),
+    };
   }
   return scaled;
 }
@@ -166,7 +198,11 @@ export const minTouch = 48; // every button at least 48 x 48
 // ---------------------------------------------------------------------
 // The theme for React Native Paper, plus our own values under "app"
 // ---------------------------------------------------------------------
-export function makeTheme(mode: ColourMode, size: TextSize) {
+export function makeTheme(
+  mode: ColourMode,
+  size: TextSize,
+  language: string = "en",
+) {
   const c = palettes[mode];
   const base = mode === "light" ? MD3LightTheme : MD3DarkTheme;
 
@@ -175,7 +211,7 @@ export function makeTheme(mode: ColourMode, size: TextSize) {
   // our own text, so a button label grows with everything else.
   // On Android a custom font needs its own file per weight, so each
   // style gets the right Public Sans file and a normal weight.
-  const text = scaleText(textScale[size]);
+  const text = scaleText(textScale[size], language === "ar");
   const paperFontConfig: Record<string, object> = {};
   for (const variant of Object.keys(base.fonts)) {
     const style =
@@ -188,12 +224,15 @@ export function makeTheme(mode: ColourMode, size: TextSize) {
             : text.body;
     paperFontConfig[variant] =
       variant === "default"
-        ? { fontFamily: fonts.regular, fontWeight: "normal" }
+        ? {
+            fontFamily: text.body.fontFamily,
+            fontWeight: text.body.fontWeight ?? "normal",
+          }
         : {
             fontFamily: style.fontFamily,
             fontSize: style.fontSize,
             lineHeight: style.lineHeight,
-            fontWeight: "normal",
+            fontWeight: style.fontWeight ?? "normal",
             letterSpacing: 0,
           };
   }

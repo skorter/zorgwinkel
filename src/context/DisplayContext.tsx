@@ -11,7 +11,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { switchDirectionIfNeeded } from "../lib/direction";
+import { keepDirectionInSync, switchDirectionIfNeeded } from "../lib/direction";
 import i18n from "../lib/i18n";
 import type { ColourMode, TextSize } from "../theme";
 
@@ -68,6 +68,7 @@ export function DisplayProvider({ children }: { children: ReactNode }) {
           : defaults;
         setSettings(restored);
         i18n.changeLanguage(restored.language);
+        keepDirectionInSync(restored.language);
       })
       .catch(() => {
         // Unreadable storage: just start with the defaults.
