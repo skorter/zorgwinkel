@@ -90,6 +90,12 @@
       "tell_doctor": "Doktora kendim söylemeyi tercih ederim"
     },
     "noteLabel": "İsterseniz birkaç kelime ekleyin",
-    "notePlaceholder": "Bunu boş bırakabilirsiniz"
+    "notePlaceholder": "Bunu boş bırakabilirsiniz",
+    "whenTitle": "Ne zaman gelmek istersiniz?",
+    "chooseDay": "Bir gün seçin",
+    "chooseTime": "Günün bir zamanını seçin",
+    "morning": "Sabah",
+    "afternoon": "Öğleden sonra",
+    "addToBasket": "Sepete ekle"
   }
 }

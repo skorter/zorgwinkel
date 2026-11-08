@@ -90,6 +90,12 @@
       "tell_doctor": "أفضّل أن أخبر الطبيب بنفسي"
     },
     "noteLabel": "أضف بضع كلمات إن أردت",
-    "notePlaceholder": "يمكنك ترك هذا فارغاً"
+    "notePlaceholder": "يمكنك ترك هذا فارغاً",
+    "whenTitle": "متى تريد أن تأتي؟",
+    "chooseDay": "اختر يوماً",
+    "chooseTime": "اختر وقتاً من اليوم",
+    "morning": "صباحاً",
+    "afternoon": "بعد الظهر",
+    "addToBasket": "أضف إلى السلة"
   }
 }

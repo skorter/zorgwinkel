@@ -91,6 +91,12 @@
       "tell_doctor": "Dat vertel ik liever aan de huisarts"
     },
     "noteLabel": "Schrijf er een paar woorden bij, als u wilt",
-    "notePlaceholder": "U kunt dit leeg laten"
+    "notePlaceholder": "U kunt dit leeg laten",
+    "whenTitle": "Wanneer wilt u komen?",
+    "chooseDay": "Kies een dag",
+    "chooseTime": "Kies een dagdeel",
+    "morning": "Ochtend",
+    "afternoon": "Middag",
+    "addToBasket": "In het mandje doen"
   }
 }

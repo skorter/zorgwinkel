@@ -91,6 +91,12 @@
       "tell_doctor": "I'd rather tell the doctor"
     },
     "noteLabel": "Add a few words, if you want",
-    "notePlaceholder": "You can leave this empty"
+    "notePlaceholder": "You can leave this empty",
+    "whenTitle": "When would you like to come?",
+    "chooseDay": "Choose a day",
+    "chooseTime": "Choose a time of day",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "addToBasket": "Add to basket"
   }
 }
