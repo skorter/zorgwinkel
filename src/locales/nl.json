@@ -8,7 +8,8 @@
     "done": "Klaar",
     "askRealPerson": "Vraag het een mens",
     "languageAndDisplay": "Taal en weergave",
-    "changeLanguage": "Taal veranderen"
+    "changeLanguage": "Taal veranderen",
+    "backToHome": "Terug naar het beginscherm"
   },
   "welcome": {
     "title": "Welkom bij Zorgwinkel",
@@ -57,19 +58,19 @@
     "messages": "Berichten",
     "askSomeone": "Vraag iemand"
   },
-  "settings": {
-    "yourDetails": "Uw gegevens",
-    "name": "Naam",
-    "gpPractice": "Huisartsenpraktijk",
-    "detailsNote": "Uw naam komt van DigiD. Wilt u uw gegevens veranderen? Vraag het uw huisartsenpraktijk."
-  },
   "practice": {
-    "openingHours": "Open maandag tot en met vrijdag, 8:00 tot 17:00"
+    "openingHours": "Open maandag tot en met vrijdag, 8:00 tot 17:00",
+    "days": "Maandag tot en met vrijdag",
+    "hours": "8:00–17:00"
   },
   "help": {
     "title": "Vraag het een mens",
-    "text": "Geen probleem. De praktijk kan u helpen, of belt u terug om uw aanvraag te bevestigen.",
+    "subtitle": "Praat met iemand van uw huisartsenpraktijk.",
     "callThePractice": "Bel de praktijk",
     "callMeBack": "Bel mij terug"
+  },
+  "callback": {
+    "title": "Klaar. De praktijk belt u terug.",
+    "text": "Meestal binnen 2 uur op werkdagen. Houd uw telefoon in de buurt."
   }
 }

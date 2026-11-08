@@ -8,7 +8,8 @@
     "done": "Done",
     "askRealPerson": "Ask a real person",
     "languageAndDisplay": "Language and display",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "backToHome": "Back to home"
   },
   "welcome": {
     "title": "Welcome to Zorgwinkel",
@@ -57,19 +58,19 @@
     "messages": "Messages",
     "askSomeone": "Ask someone"
   },
-  "settings": {
-    "yourDetails": "Your details",
-    "name": "Name",
-    "gpPractice": "GP practice",
-    "detailsNote": "Your name comes from DigiD. To change your details, ask your GP practice."
-  },
   "practice": {
-    "openingHours": "Open Monday to Friday, 8:00 to 17:00"
+    "openingHours": "Open Monday to Friday, 8:00 to 17:00",
+    "days": "Monday to Friday",
+    "hours": "8:00–17:00"
   },
   "help": {
     "title": "Ask a real person",
-    "text": "No problem. The practice can help you, or call you back to confirm your request.",
+    "subtitle": "Talk to someone at your GP practice.",
     "callThePractice": "Call the practice",
     "callMeBack": "Call me back"
+  },
+  "callback": {
+    "title": "Done. The practice will call you back.",
+    "text": "Usually within 2 hours on working days. Keep your phone nearby."
   }
 }
