@@ -1,15 +1,20 @@
-// TEMPORARY connection test (Phase 2). Replaced by the real Home in Phase 3.
+// TEMPORARY test screen (Phase 2 and 3). Replaced by the real Home later.
+// Tests the Supabase connection and the display settings.
 import { useState } from "react";
-import { Button, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
+import { Button, Text } from "react-native-paper";
+import { useDisplay } from "../context/DisplayContext";
 import { supabase } from "../lib/supabase";
+import { useAppTheme, type ColourMode, type TextSize } from "../theme";
 
 export default function Index() {
-  const [lines, setLines] = useState<string[]>(["Not tested yet"]);
+  const theme = useAppTheme();
+  const { text, colors, spacing } = theme.app;
+  const { colourMode, textSize, update } = useDisplay();
+  const [lines, setLines] = useState<string[]>([]);
 
   async function testConnection() {
     const result: string[] = [];
-
-    // 1. Not logged in: the security rules should block this.
     await supabase.auth.signOut();
     const blocked = await supabase.from("medicines").select("name");
     result.push(
@@ -17,8 +22,6 @@ export default function Index() {
         ? "Without login: blocked (good)"
         : "Without login: data visible (security problem!)",
     );
-
-    // 2. Log in as the test patient.
     const login = await supabase.auth.signInWithPassword({
       email: process.env.EXPO_PUBLIC_TEST_EMAIL ?? "",
       password: process.env.EXPO_PUBLIC_TEST_PASSWORD ?? "",
@@ -27,9 +30,6 @@ export default function Index() {
       setLines([...result, "Login failed: " + login.error.message]);
       return;
     }
-    result.push("Logged in as " + login.data.user.email);
-
-    // 3. Read her medicines.
     const medicines = await supabase
       .from("medicines")
       .select("name")
@@ -38,26 +38,62 @@ export default function Index() {
       setLines([...result, "Reading failed: " + medicines.error.message]);
       return;
     }
-    result.push("", ...medicines.data.map((m) => m.name));
-    setLines(result);
+    setLines([...result, ...medicines.data.map((m) => m.name)]);
   }
 
+  const modes: ColourMode[] = ["light", "dark", "highContrast"];
+  const sizes: TextSize[] = ["normal", "large", "extraLarge"];
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 24,
-        gap: 16,
+    <ScrollView
+      contentContainerStyle={{
+        padding: spacing.lg,
+        paddingTop: 64,
+        gap: spacing.md,
       }}
     >
-      <Button title="Test connection" onPress={testConnection} />
+      <Text style={[text.title, { color: colors.text }]}>Good morning.</Text>
+      <Text style={[text.heading, { color: colors.text }]}>
+        What do you need today?
+      </Text>
+      <Text style={[text.body, { color: colors.textMuted }]}>
+        Body text in Public Sans.
+      </Text>
+
+      <Text style={[text.label, { color: colors.textMuted }]}>Colours</Text>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
+        {modes.map((mode) => (
+          <Button
+            key={mode}
+            mode={mode === colourMode ? "contained" : "outlined"}
+            onPress={() => update({ colourMode: mode })}
+          >
+            {mode}
+          </Button>
+        ))}
+      </View>
+
+      <Text style={[text.label, { color: colors.textMuted }]}>Text size</Text>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
+        {sizes.map((size) => (
+          <Button
+            key={size}
+            mode={size === textSize ? "contained" : "outlined"}
+            onPress={() => update({ textSize: size })}
+          >
+            {size}
+          </Button>
+        ))}
+      </View>
+
+      <Button mode="contained" onPress={testConnection}>
+        Test connection
+      </Button>
       {lines.map((line, i) => (
-        <Text key={i} style={{ fontSize: 18, textAlign: "center" }}>
+        <Text key={i} style={[text.body, { color: colors.text }]}>
           {line}
         </Text>
       ))}
-    </View>
+    </ScrollView>
   );
 }
