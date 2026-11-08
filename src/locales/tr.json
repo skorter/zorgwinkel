@@ -81,6 +81,15 @@
     "gpNoName": "Kendi doktorunuz",
     "nurse": "Muayenehane hemşiresi",
     "nurseNote": "İlk müsait olan",
-    "chooseFirst": "Önce bir seçenek seçin."
+    "chooseFirst": "Önce bir seçenek seçin.",
+    "reasonTitle": "Randevu ne için?",
+    "reasons": {
+      "checkup": "Bir kontrol",
+      "pain": "Ağrı veya rahatsızlık",
+      "other": "Başka bir şey",
+      "tell_doctor": "Doktora kendim söylemeyi tercih ederim"
+    },
+    "noteLabel": "İsterseniz birkaç kelime ekleyin",
+    "notePlaceholder": "Bunu boş bırakabilirsiniz"
   }
 }

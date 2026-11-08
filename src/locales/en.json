@@ -82,6 +82,15 @@
     "gpNoName": "Your own doctor",
     "nurse": "Practice nurse",
     "nurseNote": "First available",
-    "chooseFirst": "Choose an option first."
+    "chooseFirst": "Choose an option first.",
+    "reasonTitle": "What is the appointment for?",
+    "reasons": {
+      "checkup": "A check-up",
+      "pain": "Pain or discomfort",
+      "other": "Something else",
+      "tell_doctor": "I'd rather tell the doctor"
+    },
+    "noteLabel": "Add a few words, if you want",
+    "notePlaceholder": "You can leave this empty"
   }
 }

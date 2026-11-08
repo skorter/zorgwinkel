@@ -82,6 +82,15 @@
     "gpNoName": "Uw eigen huisarts",
     "nurse": "Praktijkverpleegkundige",
     "nurseNote": "Wie het eerst kan",
-    "chooseFirst": "Kies eerst een optie."
+    "chooseFirst": "Kies eerst een optie.",
+    "reasonTitle": "Waarvoor is de afspraak?",
+    "reasons": {
+      "checkup": "Een controle",
+      "pain": "Pijn of klachten",
+      "other": "Iets anders",
+      "tell_doctor": "Dat vertel ik liever aan de huisarts"
+    },
+    "noteLabel": "Schrijf er een paar woorden bij, als u wilt",
+    "notePlaceholder": "U kunt dit leeg laten"
   }
 }
