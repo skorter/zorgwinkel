@@ -75,5 +75,13 @@
   "callback": {
     "title": "Klaar. De praktijk belt u terug.",
     "text": "Meestal binnen 2 uur op werkdagen. Houd uw telefoon in de buurt."
+  },
+  "appointment": {
+    "whoTitle": "Wie wilt u zien?",
+    "gp": "Uw huisarts",
+    "gpNoName": "Uw eigen huisarts",
+    "nurse": "Praktijkverpleegkundige",
+    "nurseNote": "Wie het eerst kan",
+    "chooseFirst": "Kies eerst een optie."
   }
 }

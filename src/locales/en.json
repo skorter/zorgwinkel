@@ -75,5 +75,13 @@
   "callback": {
     "title": "Done. The practice will call you back.",
     "text": "Usually within 2 hours on working days. Keep your phone nearby."
+  },
+  "appointment": {
+    "whoTitle": "Who do you want to see?",
+    "gp": "Your GP",
+    "gpNoName": "Your own doctor",
+    "nurse": "Practice nurse",
+    "nurseNote": "First available",
+    "chooseFirst": "Choose an option first."
   }
 }

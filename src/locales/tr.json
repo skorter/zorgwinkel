@@ -74,5 +74,13 @@
   "callback": {
     "title": "Tamam. Muayenehane sizi geri arayacak.",
     "text": "İş günlerinde genellikle 2 saat içinde. Telefonunuzu yakınınızda tutun."
+  },
+  "appointment": {
+    "whoTitle": "Kimi görmek istiyorsunuz?",
+    "gp": "Aile hekiminiz",
+    "gpNoName": "Kendi doktorunuz",
+    "nurse": "Muayenehane hemşiresi",
+    "nurseNote": "İlk müsait olan",
+    "chooseFirst": "Önce bir seçenek seçin."
   }
 }
