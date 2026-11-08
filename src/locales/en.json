@@ -121,5 +121,29 @@
     "keep": "Keep it",
     "send": "Send request",
     "empty": "Your basket is empty."
+  },
+  "confirm": {
+    "title": "Confirm it is you",
+    "text": "Log in once with DigiD, the same login you use for your taxes or pension. Then your GP practice knows the request is from you.",
+    "privacy": "Only you and your GP practice can see your medicines and appointments.",
+    "rememberMe": "Remember me on this phone. You will not need to log in again.",
+    "loginDigid": "Log in with DigiD",
+    "noDigid": "I don't have DigiD"
+  },
+  "digid": {
+    "title": "DigiD",
+    "simulation": "Test version: any 5 digits work. Your PIN is not saved or sent.",
+    "enterPin": "Enter your 5-digit PIN code",
+    "pinProgress": "{{count}} of 5 digits entered",
+    "delete": "Delete",
+    "deleteA11y": "Delete the last digit",
+    "loggingIn": "Logging in…",
+    "error": "Logging in did not work. Check your internet connection and try again."
+  },
+  "welcomeBack": {
+    "title": "Welcome, {{name}}.",
+    "titleNoName": "Welcome.",
+    "text": "Your details come from DigiD and your GP practice.",
+    "continue": "Continue and send request"
   }
 }

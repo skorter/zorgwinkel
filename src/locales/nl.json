@@ -121,5 +121,29 @@
     "keep": "Laten staan",
     "send": "Aanvraag versturen",
     "empty": "Uw mandje is leeg."
+  },
+  "confirm": {
+    "title": "Bevestig dat u het bent",
+    "text": "Log één keer in met DigiD, dezelfde inlog als voor uw belasting of pensioen. Dan weet uw huisartsenpraktijk dat de aanvraag van u komt.",
+    "privacy": "Alleen u en uw huisartsenpraktijk kunnen uw medicijnen en afspraken zien.",
+    "rememberMe": "Onthoud mij op deze telefoon. U hoeft dan niet opnieuw in te loggen.",
+    "loginDigid": "Inloggen met DigiD",
+    "noDigid": "Ik heb geen DigiD"
+  },
+  "digid": {
+    "title": "DigiD",
+    "simulation": "Testversie: elke 5 cijfers werken. Uw pincode wordt niet bewaard of verstuurd.",
+    "enterPin": "Vul uw pincode van 5 cijfers in",
+    "pinProgress": "{{count}} van de 5 cijfers ingevuld",
+    "delete": "Wissen",
+    "deleteA11y": "Laatste cijfer wissen",
+    "loggingIn": "Bezig met inloggen…",
+    "error": "Inloggen lukte niet. Controleer uw internetverbinding en probeer het opnieuw."
+  },
+  "welcomeBack": {
+    "title": "Welkom, {{name}}.",
+    "titleNoName": "Welkom.",
+    "text": "Uw gegevens komen van DigiD en uw huisartsenpraktijk.",
+    "continue": "Doorgaan en aanvraag versturen"
   }
 }

@@ -120,5 +120,29 @@
     "keep": "Kalsın",
     "send": "Talebi gönder",
     "empty": "Sepetiniz boş."
+  },
+  "confirm": {
+    "title": "Siz olduğunuzu onaylayın",
+    "text": "Vergi veya emeklilik için kullandığınız DigiD ile bir kez giriş yapın. Böylece muayenehaneniz talebin sizden geldiğini bilir.",
+    "privacy": "İlaçlarınızı ve randevularınızı yalnızca siz ve muayenehaneniz görebilir.",
+    "rememberMe": "Beni bu telefonda hatırla. Tekrar giriş yapmanız gerekmez.",
+    "loginDigid": "DigiD ile giriş yap",
+    "noDigid": "DigiD'im yok"
+  },
+  "digid": {
+    "title": "DigiD",
+    "simulation": "Test sürümü: herhangi 5 rakam çalışır. PIN kodunuz kaydedilmez veya gönderilmez.",
+    "enterPin": "5 haneli PIN kodunuzu girin",
+    "pinProgress": "5 rakamdan {{count}} tanesi girildi",
+    "delete": "Sil",
+    "deleteA11y": "Son rakamı sil",
+    "loggingIn": "Giriş yapılıyor…",
+    "error": "Giriş yapılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin."
+  },
+  "welcomeBack": {
+    "title": "Hoş geldiniz, {{name}}.",
+    "titleNoName": "Hoş geldiniz.",
+    "text": "Bilgileriniz DigiD'den ve muayenehanenizden gelir.",
+    "continue": "Devam et ve talebi gönder"
   }
 }
