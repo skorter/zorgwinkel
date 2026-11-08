@@ -9,7 +9,8 @@
     "askRealPerson": "Ask a real person",
     "languageAndDisplay": "Language and display",
     "changeLanguage": "Change language",
-    "backToHome": "Back to home"
+    "backToHome": "Back to home",
+    "ok": "OK"
   },
   "welcome": {
     "title": "Welcome to Zorgwinkel",
@@ -21,7 +22,8 @@
     "getStarted": "Get started"
   },
   "language": {
-    "title": "Choose your language"
+    "title": "Choose your language",
+    "reloadText": "The app restarts now to change the reading direction."
   },
   "display": {
     "title": "Make the app easy to read",

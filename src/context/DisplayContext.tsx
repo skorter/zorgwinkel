@@ -11,6 +11,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { switchDirectionIfNeeded } from "../lib/direction";
 import i18n from "../lib/i18n";
 import type { ColourMode, TextSize } from "../theme";
 
@@ -80,9 +81,15 @@ export function DisplayProvider({ children }: { children: ReactNode }) {
     const next = { ...settings, ...changes };
     setSettings(next);
     if (changes.language) i18n.changeLanguage(changes.language);
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {
-      // Saving failed: the change still works until the app closes.
-    });
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      .catch(() => {
+        // Saving failed: the change still works until the app closes.
+      })
+      .finally(() => {
+        // Arabic needs a mirrored layout, which takes a restart.
+        // Only after saving, so the app comes back in the new language.
+        if (changes.language) switchDirectionIfNeeded(changes.language);
+      });
   }
 
   return (

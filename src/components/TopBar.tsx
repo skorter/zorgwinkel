@@ -3,9 +3,14 @@
 // - elsewhere: "Back" on the left
 // and the Basket button with its counter on the right.
 import { useRouter } from "expo-router";
-import { ArrowLeft, Check, ShoppingBasket } from "lucide-react-native";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ShoppingBasket,
+} from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { I18nManager, Pressable, Text, View } from "react-native";
 import { useAppTheme } from "../theme";
 
 type Props = {
@@ -24,6 +29,8 @@ export function TopBar({
   const { t } = useTranslation();
   const router = useRouter();
   const { colors, text, spacing, radius, minTouch } = useAppTheme().app;
+  // In Arabic (right to left) "back" points to the right.
+  const BackArrow = I18nManager.isRTL ? ArrowRight : ArrowLeft;
 
   return (
     <View
@@ -86,7 +93,7 @@ export function TopBar({
             gap: spacing.sm,
           }}
         >
-          <ArrowLeft
+          <BackArrow
             size={text.bodyStrong.fontSize}
             color={colors.primary}
             strokeWidth={2}

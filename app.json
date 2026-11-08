@@ -10,6 +10,9 @@
     "ios": {
       "icon": "./assets/expo.icon"
     },
+    "extra": {
+      "supportsRTL": true
+    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",

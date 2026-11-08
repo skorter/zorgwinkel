@@ -9,7 +9,8 @@
     "askRealPerson": "Vraag het een mens",
     "languageAndDisplay": "Taal en weergave",
     "changeLanguage": "Taal veranderen",
-    "backToHome": "Terug naar het beginscherm"
+    "backToHome": "Terug naar het beginscherm",
+    "ok": "OK"
   },
   "welcome": {
     "title": "Welkom bij Zorgwinkel",
@@ -21,7 +22,8 @@
     "getStarted": "Beginnen"
   },
   "language": {
-    "title": "Kies uw taal"
+    "title": "Kies uw taal",
+    "reloadText": "De app start nu opnieuw om de leesrichting te veranderen."
   },
   "display": {
     "title": "Maak de app makkelijk te lezen",
