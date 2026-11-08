@@ -3,6 +3,7 @@
     "appName": "Zorgwinkel",
     "back": "Terug",
     "basket": "Mandje",
+    "basketCount_one": "Mandje, {{count}} ding",
     "basketCount": "Mandje, {{count}} dingen",
     "next": "Volgende",
     "done": "Klaar",

@@ -42,7 +42,7 @@ export default function Home() {
   });
 
   return (
-    <Screen topBar={<TopBar variant="home" basketCount={0} />}>
+    <Screen topBar={<TopBar variant="home" />}>
       {/* Language and display, and today's date */}
       <View
         style={{

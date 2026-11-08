@@ -3,6 +3,7 @@
     "appName": "Zorgwinkel",
     "back": "Back",
     "basket": "Basket",
+    "basketCount_one": "Basket, {{count}} item",
     "basketCount": "Basket, {{count}} items",
     "next": "Next",
     "done": "Done",

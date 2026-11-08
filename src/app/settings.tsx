@@ -25,7 +25,7 @@ export default function Settings() {
 
   return (
     <Screen
-      topBar={<TopBar variant="back" basketCount={0} />}
+      topBar={<TopBar variant="back" />}
       showAsk={false}
       footer={
         <AppButton label={t("common.done")} onPress={() => router.back()} />
