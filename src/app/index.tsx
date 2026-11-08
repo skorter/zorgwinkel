@@ -1,16 +1,18 @@
 // TEMPORARY test screen (Phase 2 and 3). Replaced by the real Home later.
-// Tests the Supabase connection and the display settings.
+// Tests the Supabase connection, the display settings and the languages.
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import { useDisplay } from "../context/DisplayContext";
+import { useDisplay, type Language } from "../context/DisplayContext";
 import { supabase } from "../lib/supabase";
 import { useAppTheme, type ColourMode, type TextSize } from "../theme";
 
 export default function Index() {
+  const { t } = useTranslation();
   const theme = useAppTheme();
   const { text, colors, spacing } = theme.app;
-  const { colourMode, textSize, update } = useDisplay();
+  const { colourMode, textSize, language, update } = useDisplay();
   const [lines, setLines] = useState<string[]>([]);
 
   async function testConnection() {
@@ -43,6 +45,12 @@ export default function Index() {
 
   const modes: ColourMode[] = ["light", "dark", "highContrast"];
   const sizes: TextSize[] = ["normal", "large", "extraLarge"];
+  const languageNames: Record<Language, string> = {
+    en: "English",
+    nl: "Nederlands",
+    tr: "Türkçe",
+    ar: "العربية",
+  };
 
   return (
     <ScrollView
@@ -52,15 +60,34 @@ export default function Index() {
         gap: spacing.md,
       }}
     >
-      <Text style={[text.title, { color: colors.text }]}>Good morning.</Text>
+      <Text style={[text.title, { color: colors.text }]}>
+        {t("home.goodMorning")}
+      </Text>
       <Text style={[text.heading, { color: colors.text }]}>
-        What do you need today?
+        {t("home.whatDoYouNeed")}
       </Text>
       <Text style={[text.body, { color: colors.textMuted }]}>
-        Body text in Public Sans.
+        {t("display.preview")}
       </Text>
 
-      <Text style={[text.label, { color: colors.textMuted }]}>Colours</Text>
+      <Text style={[text.label, { color: colors.textMuted }]}>
+        {t("display.language")}
+      </Text>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
+        {(Object.keys(languageNames) as Language[]).map((code) => (
+          <Button
+            key={code}
+            mode={code === language ? "contained" : "outlined"}
+            onPress={() => update({ language: code })}
+          >
+            {languageNames[code]}
+          </Button>
+        ))}
+      </View>
+
+      <Text style={[text.label, { color: colors.textMuted }]}>
+        {t("display.colours")}
+      </Text>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
         {modes.map((mode) => (
           <Button
@@ -68,12 +95,14 @@ export default function Index() {
             mode={mode === colourMode ? "contained" : "outlined"}
             onPress={() => update({ colourMode: mode })}
           >
-            {mode}
+            {t(`display.${mode}`)}
           </Button>
         ))}
       </View>
 
-      <Text style={[text.label, { color: colors.textMuted }]}>Text size</Text>
+      <Text style={[text.label, { color: colors.textMuted }]}>
+        {t("display.textSize")}
+      </Text>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
         {sizes.map((size) => (
           <Button
@@ -81,7 +110,7 @@ export default function Index() {
             mode={size === textSize ? "contained" : "outlined"}
             onPress={() => update({ textSize: size })}
           >
-            {size}
+            {t(`display.${size}`)}
           </Button>
         ))}
       </View>

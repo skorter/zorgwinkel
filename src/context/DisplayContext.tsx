@@ -11,6 +11,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import i18n from "../lib/i18n";
 import type { ColourMode, TextSize } from "../theme";
 
 export type Language = "en" | "nl" | "tr" | "ar";
@@ -53,10 +54,15 @@ export function DisplayProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_KEY)
       .then((saved) => {
-        if (saved) setSettings({ ...defaults, ...JSON.parse(saved) });
+        const restored = saved
+          ? { ...defaults, ...JSON.parse(saved) }
+          : defaults;
+        setSettings(restored);
+        i18n.changeLanguage(restored.language);
       })
       .catch(() => {
         // Unreadable storage: just start with the defaults.
+        i18n.changeLanguage(defaults.language);
       })
       .finally(() => setLoaded(true));
   }, []);
@@ -65,6 +71,7 @@ export function DisplayProvider({ children }: { children: ReactNode }) {
   function update(changes: Partial<DisplaySettings>) {
     const next = { ...settings, ...changes };
     setSettings(next);
+    if (changes.language) i18n.changeLanguage(changes.language);
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {
       // Saving failed: the change still works until the app closes.
     });
