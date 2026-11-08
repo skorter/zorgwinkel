@@ -31,8 +31,9 @@ export function TopBar({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        flexWrap: "wrap", // with very large text, Basket moves to its own line
         gap: spacing.md,
-        paddingHorizontal: spacing.lg,
+        paddingHorizontal: spacing.md,
         paddingVertical: spacing.sm,
         borderBottomWidth: 1,
         borderBottomColor: colors.border,
@@ -62,7 +63,13 @@ export function TopBar({
           >
             <Check size={20} color={colors.onPrimary} strokeWidth={3} />
           </View>
-          <Text style={[text.heading, { color: colors.text, flexShrink: 1 }]}>
+          {/* The brand name shrinks to fit rather than break: "Zorgwink-el". */}
+          <Text
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.6}
+            style={[text.heading, { color: colors.text, flexShrink: 1 }]}
+          >
             {t("common.appName")}
           </Text>
         </View>

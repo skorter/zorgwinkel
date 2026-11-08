@@ -10,8 +10,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
 import { AppButton } from "../components/AppButton";
-import { BigTile } from "../components/BigTile";
 import { Screen } from "../components/Screen";
+import { TileGrid } from "../components/TileGrid";
 import { TopBar } from "../components/TopBar";
 import { useDisplay, type Language } from "../context/DisplayContext";
 import { useAppTheme, type ColourMode, type TextSize } from "../theme";
@@ -41,34 +41,38 @@ export default function Index() {
         {t("home.whatDoYouNeed")}
       </Text>
 
-      <View style={{ flexDirection: "row", gap: spacing.md }}>
-        <BigTile
-          label={t("home.appointments")}
-          icon={CalendarDays}
-          color={colors.tileAppointments}
-          onPress={nothing}
-        />
-        <BigTile
-          label={t("home.medicines")}
-          icon={Pill}
-          color={colors.tileMedicines}
-          onPress={nothing}
-        />
-      </View>
-      <View style={{ flexDirection: "row", gap: spacing.md }}>
-        <BigTile
-          label={t("home.messages")}
-          icon={MessageSquareText}
-          color={colors.tileMessages}
-          onPress={nothing}
-        />
-        <BigTile
-          label={t("home.askSomeone")}
-          icon={User}
-          color={colors.tileAsk}
-          onPress={nothing}
-        />
-      </View>
+      <TileGrid
+        tiles={[
+          {
+            key: "appointments",
+            label: t("home.appointments"),
+            icon: CalendarDays,
+            color: colors.tileAppointments,
+            onPress: nothing,
+          },
+          {
+            key: "medicines",
+            label: t("home.medicines"),
+            icon: Pill,
+            color: colors.tileMedicines,
+            onPress: nothing,
+          },
+          {
+            key: "messages",
+            label: t("home.messages"),
+            icon: MessageSquareText,
+            color: colors.tileMessages,
+            onPress: nothing,
+          },
+          {
+            key: "ask",
+            label: t("home.askSomeone"),
+            icon: User,
+            color: colors.tileAsk,
+            onPress: nothing,
+          },
+        ]}
+      />
 
       <AppButton label={t("common.next")} onPress={nothing} />
       <AppButton label={t("common.back")} onPress={nothing} variant="outline" />

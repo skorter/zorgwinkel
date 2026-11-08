@@ -1,5 +1,7 @@
 // The big coloured tiles on Home: Appointments, Medicines, ...
-// One tap opens the flow. Two tiles sit side by side in a row.
+// One tap opens the flow.
+// "square": icon on top, label below (two tiles side by side, as in Figma)
+// "row":    icon left, label right (one tile per row, for large text)
 import type { LucideIcon } from "lucide-react-native";
 import { Pressable, Text, View } from "react-native";
 import { useAppTheme } from "../theme";
@@ -9,10 +11,20 @@ type Props = {
   icon: LucideIcon;
   color: string; // the tile colour from the theme, e.g. colors.tileAppointments
   onPress: () => void;
+  layout?: "square" | "row";
+  onWordBreak?: () => void; // called when the label had to break a word in two
 };
 
-export function BigTile({ label, icon: Icon, color, onPress }: Props) {
+export function BigTile({
+  label,
+  icon: Icon,
+  color,
+  onPress,
+  layout = "square",
+  onWordBreak,
+}: Props) {
   const { colors, text, spacing, radius } = useAppTheme().app;
+  const square = layout === "square";
 
   return (
     <Pressable
@@ -20,11 +32,13 @@ export function BigTile({ label, icon: Icon, color, onPress }: Props) {
       accessibilityRole="button"
       accessibilityLabel={label}
       style={({ pressed }) => ({
-        flex: 1,
-        minHeight: 136,
-        padding: spacing.md,
+        flex: square ? 1 : undefined,
+        minHeight: square ? 136 : 88,
+        flexDirection: square ? "column" : "row",
+        alignItems: square ? "flex-start" : "center",
+        justifyContent: square ? "space-between" : "flex-start",
         gap: spacing.md,
-        justifyContent: "space-between",
+        padding: square ? spacing.sm + 4 : spacing.md,
         borderRadius: radius.lg,
         borderWidth: 1,
         borderColor: colors.border,
@@ -38,7 +52,18 @@ export function BigTile({ label, icon: Icon, color, onPress }: Props) {
       >
         <Icon size={36} color={colors.primary} strokeWidth={1.75} />
       </View>
-      <Text style={[text.heading, { color: colors.text }]}>{label}</Text>
+      <Text
+        style={[text.heading, { color: colors.text, flexShrink: 1 }]}
+        onTextLayout={(e) => {
+          // A line that does not end in a space ends in the middle of a word.
+          const lines = e.nativeEvent.lines;
+          for (let i = 0; i < lines.length - 1; i++) {
+            if (!/\s$/.test(lines[i].text)) onWordBreak?.();
+          }
+        }}
+      >
+        {label}
+      </Text>
     </Pressable>
   );
 }

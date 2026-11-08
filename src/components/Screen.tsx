@@ -25,7 +25,7 @@ export function Screen({ topBar, children, footer, showAsk = true }: Props) {
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
-          padding: spacing.lg,
+          padding: spacing.md,
           gap: spacing.md,
         }}
         keyboardShouldPersistTaps="handled"
@@ -35,7 +35,7 @@ export function Screen({ topBar, children, footer, showAsk = true }: Props) {
       {(footer || showAsk) && (
         <View
           style={{
-            paddingHorizontal: spacing.lg,
+            paddingHorizontal: spacing.md,
             paddingTop: spacing.sm,
             paddingBottom: spacing.md,
             gap: spacing.sm,
