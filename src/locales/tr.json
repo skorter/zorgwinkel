@@ -144,5 +144,15 @@
     "titleNoName": "Hoş geldiniz.",
     "text": "Bilgileriniz DigiD'den ve muayenehanenizden gelir.",
     "continue": "Devam et ve talebi gönder"
+  },
+  "send": {
+    "sending": "Gönderiliyor…",
+    "error": "Gönderilemedi. Hiçbir şey gönderilmedi ve sepetiniz duruyor. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+    "tryAgain": "Tekrar dene"
+  },
+  "receipt": {
+    "title": "Tamam. Talebiniz gönderildi.",
+    "text": "Muayenehane size 1 iş günü içinde mesaj gönderecek.",
+    "whatYouSent": "Gönderdikleriniz"
   }
 }

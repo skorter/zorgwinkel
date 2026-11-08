@@ -44,6 +44,7 @@ export type NewBasketItem =
 type BasketContextValue = {
   items: BasketItem[];
   count: number;
+  lastSent: BasketItem[]; // what the last successful send contained (receipt)
   add: (item: NewBasketItem) => string; // returns the new item's id
   remove: (id: string) => void;
   change: (id: string, item: NewBasketItem) => void;
@@ -60,6 +61,7 @@ function newId() {
 
 export function BasketProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<BasketItem[]>([]);
+  const [lastSent, setLastSent] = useState<BasketItem[]>([]);
 
   function add(item: NewBasketItem) {
     // The same medicine twice would become two requests for one box:
@@ -90,13 +92,23 @@ export function BasketProvider({ children }: { children: ReactNode }) {
   }
 
   // Only called after submit_basket succeeded, never before.
+  // Keeps a copy in lastSent, so the receipt can show what was sent.
   function empty() {
+    setLastSent(items);
     setItems([]);
   }
 
   return (
     <BasketContext.Provider
-      value={{ items, count: items.length, add, remove, change, empty }}
+      value={{
+        items,
+        count: items.length,
+        lastSent,
+        add,
+        remove,
+        change,
+        empty,
+      }}
     >
       {children}
     </BasketContext.Provider>

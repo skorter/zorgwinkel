@@ -145,5 +145,15 @@
     "titleNoName": "Welkom.",
     "text": "Uw gegevens komen van DigiD en uw huisartsenpraktijk.",
     "continue": "Doorgaan en aanvraag versturen"
+  },
+  "send": {
+    "sending": "Bezig met versturen…",
+    "error": "Versturen lukte niet. Er is niets verstuurd en uw mandje is er nog. Controleer uw internetverbinding en probeer het opnieuw.",
+    "tryAgain": "Opnieuw proberen"
+  },
+  "receipt": {
+    "title": "Klaar. Uw aanvraag is verstuurd.",
+    "text": "De praktijk stuurt u binnen 1 werkdag een bericht.",
+    "whatYouSent": "Wat u hebt verstuurd"
   }
 }

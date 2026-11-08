@@ -1,7 +1,7 @@
 // Every call to Supabase in one place, so the screens never talk to the
 // database directly (technical design, API section).
-// The other functions (submitBasket, getNextAppointment, ...) are added
-// here in the next steps.
+// getNextAppointment and the US02 functions are added in the next steps.
+import type { BasketItem } from "../context/BasketContext";
 import { supabase } from "./supabase";
 
 export type Profile = {
@@ -53,4 +53,34 @@ export async function getProfile(): Promise<Profile | null> {
 
   if (error) throw error;
   return data;
+}
+
+// Send the whole basket in one call to submit_basket (supabase/schema.sql).
+// The database saves everything or nothing, so a failed send never
+// leaves half a basket behind. Throws when it fails; the screen then
+// keeps the basket and shows Try again.
+export async function submitBasket(items: BasketItem[]): Promise<void> {
+  // The app's camelCase names become the database's snake_case names.
+  const appointments = items.flatMap((i) =>
+    i.kind === "appointment"
+      ? [
+          {
+            provider: i.appointment.provider,
+            reason: i.appointment.reason,
+            note: i.appointment.note ?? "",
+            preferred_date: i.appointment.preferredDate,
+            part_of_day: i.appointment.partOfDay,
+          },
+        ]
+      : [],
+  );
+  const medicineIds = items.flatMap((i) =>
+    i.kind === "medicine" ? [i.medicine.medicineId] : [],
+  );
+
+  const { error } = await supabase.rpc("submit_basket", {
+    p_appointments: appointments,
+    p_medicine_ids: medicineIds,
+  });
+  if (error) throw error;
 }

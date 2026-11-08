@@ -145,5 +145,15 @@
     "titleNoName": "Welcome.",
     "text": "Your details come from DigiD and your GP practice.",
     "continue": "Continue and send request"
+  },
+  "send": {
+    "sending": "Sending…",
+    "error": "Sending did not work. Nothing has been sent and your basket is still here. Check your internet connection and try again.",
+    "tryAgain": "Try again"
+  },
+  "receipt": {
+    "title": "Done. Your request has been sent.",
+    "text": "The practice will send you a message within 1 working day.",
+    "whatYouSent": "What you sent"
   }
 }

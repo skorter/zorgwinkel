@@ -1,16 +1,21 @@
 // 1.5 / 2.3 Your basket. The patient checks everything before sending.
 // Each item has Remove; appointments also have Change, which opens the
 // three steps again with the earlier answers filled in (?editId=...).
-// Send request is the only way anything leaves the phone.
+// Send request is the only way anything leaves the phone. The first time
+// it goes through Confirm it is you (DigiD); after that, with Remember me,
+// it sends straight away.
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Alert, Pressable, Text, View } from "react-native";
 import { AppButton } from "../components/AppButton";
 import { BasketItemCard } from "../components/BasketItemCard";
 import { Screen } from "../components/Screen";
+import { SendError } from "../components/SendError";
 import { TopBar } from "../components/TopBar";
 import { type BasketItem, useBasket } from "../context/BasketContext";
+import { isLoggedIn } from "../lib/api";
 import { useProfile } from "../lib/useProfile";
+import { useSendBasket } from "../lib/useSendBasket";
 import { useAppTheme } from "../theme";
 
 export default function YourBasket() {
@@ -19,6 +24,7 @@ export default function YourBasket() {
   const { colors, text, spacing, minTouch } = useAppTheme().app;
   const { items, remove } = useBasket();
   const profile = useProfile();
+  const { send, sending, failed } = useSendBasket();
 
   function changeItem(item: BasketItem) {
     router.push({
@@ -40,9 +46,12 @@ export default function YourBasket() {
     ]);
   }
 
-  function sendRequest() {
-    // The DigiD confirmation and submit_basket come in the next steps.
-    router.push("/confirm");
+  async function sendRequest() {
+    if (await isLoggedIn()) {
+      send(); // remembered on this phone: no DigiD needed
+    } else {
+      router.push("/confirm"); // first time: log in with DigiD first
+    }
   }
 
   // A text button for Change and Remove, at least 48 points high.
@@ -128,7 +137,18 @@ export default function YourBasket() {
             </BasketItemCard>
           ))}
 
-          <AppButton label={t("basket.send")} onPress={sendRequest} />
+          {failed && <SendError />}
+          <AppButton
+            label={
+              sending
+                ? t("send.sending")
+                : failed
+                  ? t("send.tryAgain")
+                  : t("basket.send")
+            }
+            onPress={sendRequest}
+            disabled={sending}
+          />
         </>
       )}
     </Screen>
