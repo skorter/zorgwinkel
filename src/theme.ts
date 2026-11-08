@@ -171,19 +171,31 @@ export function makeTheme(mode: ColourMode, size: TextSize) {
   const base = mode === "light" ? MD3LightTheme : MD3DarkTheme;
 
   // Paper's own components (Button, TextInput, ...) use these fonts.
+  // They follow the same three sizes and the same text size choice as
+  // our own text, so a button label grows with everything else.
   // On Android a custom font needs its own file per weight, so each
   // style gets the right Public Sans file and a normal weight.
-  const paperFontConfig: Record<
-    string,
-    { fontFamily: string; fontWeight: "normal" }
-  > = {};
+  const text = scaleText(textScale[size]);
+  const paperFontConfig: Record<string, object> = {};
   for (const variant of Object.keys(base.fonts)) {
-    const family = variant.startsWith("body")
-      ? fonts.regular
-      : variant.startsWith("label")
-        ? fonts.semiBold
-        : fonts.bold;
-    paperFontConfig[variant] = { fontFamily: family, fontWeight: "normal" };
+    const style =
+      variant.startsWith("display") || variant.startsWith("headline")
+        ? text.title
+        : variant.startsWith("title")
+          ? text.heading
+          : variant.startsWith("label")
+            ? text.bodyStrong
+            : text.body;
+    paperFontConfig[variant] =
+      variant === "default"
+        ? { fontFamily: fonts.regular, fontWeight: "normal" }
+        : {
+            fontFamily: style.fontFamily,
+            fontSize: style.fontSize,
+            lineHeight: style.lineHeight,
+            fontWeight: "normal",
+            letterSpacing: 0,
+          };
   }
 
   return {
@@ -214,7 +226,7 @@ export function makeTheme(mode: ColourMode, size: TextSize) {
       mode,
       size,
       colors: c,
-      text: scaleText(textScale[size]),
+      text,
       spacing,
       radius,
       minTouch,
