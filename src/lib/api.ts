@@ -1,6 +1,6 @@
 // Every call to Supabase in one place, so the screens never talk to the
 // database directly (technical design, API section).
-// getNextAppointment and the US02 functions are added in the next steps.
+// The US02 functions (medicines, live status) are added in Phase 5.
 import type { BasketItem } from "../context/BasketContext";
 import { supabase } from "./supabase";
 
@@ -50,6 +50,30 @@ export async function getProfile(): Promise<Profile | null> {
     .from("profiles")
     .select("full_name, gp_name")
     .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export type NextAppointment = {
+  provider: "gp" | "nurse";
+  confirmed_time: string; // set by the practice when it confirms
+};
+
+// The next confirmed appointment, for Home (0.2). Only confirmed ones:
+// a request becomes an appointment once the practice has picked a time.
+// null when nobody is logged in or there is none coming up.
+export async function getNextAppointment(): Promise<NextAppointment | null> {
+  if (!(await isLoggedIn())) return null;
+
+  const { data, error } = await supabase
+    .from("appointments")
+    .select("provider, confirmed_time")
+    .eq("status", "confirmed")
+    .gt("confirmed_time", new Date().toISOString())
+    .order("confirmed_time")
+    .limit(1)
+    .maybeSingle(); // no row is fine: then data is null
 
   if (error) throw error;
   return data;

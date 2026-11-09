@@ -58,7 +58,8 @@
     "appointments": "المواعيد",
     "medicines": "الأدوية",
     "messages": "الرسائل",
-    "askSomeone": "اسأل أحدًا"
+    "askSomeone": "اسأل أحدًا",
+    "appointmentWhen": "{{day}} الساعة {{time}}"
   },
   "practice": {
     "openingHours": "مفتوح من الاثنين إلى الجمعة، 8:00–17:00",

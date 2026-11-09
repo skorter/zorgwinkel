@@ -58,7 +58,8 @@
     "appointments": "Randevular",
     "medicines": "İlaçlar",
     "messages": "Mesajlar",
-    "askSomeone": "Birine sorun"
+    "askSomeone": "Birine sorun",
+    "appointmentWhen": "{{day}}, saat {{time}}"
   },
   "practice": {
     "openingHours": "Pazartesi–Cuma açık, 8:00–17:00",

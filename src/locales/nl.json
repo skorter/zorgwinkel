@@ -59,7 +59,8 @@
     "appointments": "Afspraken",
     "medicines": "Medicijnen",
     "messages": "Berichten",
-    "askSomeone": "Vraag iemand"
+    "askSomeone": "Vraag iemand",
+    "appointmentWhen": "{{day}} om {{time}}"
   },
   "practice": {
     "openingHours": "Open maandag tot en met vrijdag, 8:00 tot 17:00",
