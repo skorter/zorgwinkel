@@ -108,3 +108,58 @@ export async function submitBasket(items: BasketItem[]): Promise<void> {
   });
   if (error) throw error;
 }
+
+// ---------------------------------------------------------------------
+// US02: repeat medicine
+// ---------------------------------------------------------------------
+
+// The allowed values match the "check" line in supabase/schema.sql.
+// 'collected' closes a request, so Reorder comes back.
+export type MedicineStatus = "requested" | "ready" | "collected";
+
+export type Medicine = {
+  id: string;
+  name: string; // "Simvastatin"
+  strength: string; // "20 mg"
+  how_often: string; // "Once a day, in the evening"
+  status: MedicineStatus | null; // the latest request, or null if never requested
+};
+
+// The patient's repeat list for Your medicines (2.1), each with the
+// status of its LATEST request only. Older requests don't matter: if
+// the newest one is collected, the patient can reorder again.
+// null when nobody is logged in: the screen then asks to log in first.
+// No filter on the patient: row level security does that.
+export async function getMyMedicines(): Promise<Medicine[] | null> {
+  if (!(await isLoggedIn())) return null;
+
+  const { data, error } = await supabase
+    .from("medicines")
+    .select(
+      "id, name, strength, how_often, medicine_requests(status, updated_at)",
+    )
+    .order("name")
+    // Inside each medicine: newest request first, and only that one.
+    .order("updated_at", {
+      referencedTable: "medicine_requests",
+      ascending: false,
+    })
+    .limit(1, { referencedTable: "medicine_requests" });
+
+  if (error) throw error;
+
+  // Turn the list of (at most one) request into a simple status.
+  return data.map((m) => ({
+    id: m.id,
+    name: m.name,
+    strength: m.strength,
+    how_often: m.how_often,
+    status: (m.medicine_requests[0]?.status as MedicineStatus) ?? null,
+  }));
+}
+
+// A request is "open" while the practice is still busy with it or the
+// medicine waits at the pharmacy. Then Reorder is replaced by the label.
+export function isOpen(status: MedicineStatus | null): boolean {
+  return status === "requested" || status === "ready";
+}
