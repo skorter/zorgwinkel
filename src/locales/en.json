@@ -3,6 +3,7 @@
     "appName": "Zorgwinkel",
     "back": "Back",
     "basket": "Basket",
+    "basketCount_one": "Basket, {{count}} item",
     "basketCount": "Basket, {{count}} items",
     "next": "Next",
     "done": "Done",
@@ -58,7 +59,8 @@
     "appointments": "Appointments",
     "medicines": "Medicines",
     "messages": "Messages",
-    "askSomeone": "Ask someone"
+    "askSomeone": "Ask someone",
+    "appointmentWhen": "{{day}} at {{time}}"
   },
   "practice": {
     "openingHours": "Open Monday to Friday, 8:00 to 17:00",
@@ -74,5 +76,85 @@
   "callback": {
     "title": "Done. The practice will call you back.",
     "text": "Usually within 2 hours on working days. Keep your phone nearby."
+  },
+  "appointment": {
+    "whoTitle": "Who do you want to see?",
+    "gp": "Your GP",
+    "gpNoName": "Your own doctor",
+    "nurse": "Practice nurse",
+    "nurseNote": "First available",
+    "chooseFirst": "Choose an option first.",
+    "reasonTitle": "What is the appointment for?",
+    "reasons": {
+      "checkup": "A check-up",
+      "pain": "Pain or discomfort",
+      "other": "Something else",
+      "tell_doctor": "I'd rather tell the doctor"
+    },
+    "noteLabel": "Add a few words, if you want",
+    "notePlaceholder": "You can leave this empty",
+    "whenTitle": "When would you like to come?",
+    "chooseDay": "Choose a day",
+    "chooseTime": "Choose a time of day",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "addToBasket": "Add to basket"
+  },
+  "added": {
+    "title": "Added to your basket",
+    "notSentYet": "It will be sent when you check your basket.",
+    "goToBasket": "Go to basket"
+  },
+  "basketItem": {
+    "appointmentWith": "Appointment with {{name}}",
+    "yourGp": "your GP",
+    "nurse": "the practice nurse",
+    "repeatMedicine": "Repeat medicine"
+  },
+  "basket": {
+    "title": "Your basket",
+    "subtitle": "Check your request before you send it.",
+    "change": "Change",
+    "remove": "Remove",
+    "changeA11y": "Change this appointment",
+    "removeA11y": "Remove this from your basket",
+    "removeTitle": "Remove from your basket?",
+    "keep": "Keep it",
+    "send": "Send request",
+    "empty": "Your basket is empty."
+  },
+  "confirm": {
+    "title": "Confirm it is you",
+    "text": "Log in once with DigiD, the same login you use for your taxes or pension. Then your GP practice knows the request is from you.",
+    "privacy": "Only you and your GP practice can see your medicines and appointments.",
+    "rememberMe": "Remember me on this phone. You will not need to log in again.",
+    "loginDigid": "Log in with DigiD",
+    "noDigid": "I don't have DigiD"
+  },
+  "digid": {
+    "title": "DigiD",
+    "simulation": "Test version: any 5 digits work. Your PIN is not saved or sent.",
+    "enterPin": "Enter your 5-digit PIN code",
+    "pinProgress": "{{count}} of 5 digits entered",
+    "delete": "Delete",
+    "deleteA11y": "Delete the last digit",
+    "loggingIn": "Logging in…",
+    "error": "Logging in did not work. Check your internet connection and try again."
+  },
+  "welcomeBack": {
+    "title": "Welcome, {{name}}.",
+    "titleNoName": "Welcome.",
+    "text": "Your details come from DigiD and your GP practice.",
+    "continue": "Continue and send request"
+  },
+  "send": {
+    "sending": "Sending…",
+    "error": "Sending did not work. Nothing has been sent and your basket is still here. Check your internet connection and try again.",
+    "tryAgain": "Try again"
+  },
+  "receipt": {
+    "title": "Done. Your request has been sent.",
+    "text": "The practice will send you a message within 1 working day.",
+    "whatYouSent": "What you sent"
   }
 }

@@ -2,7 +2,8 @@
 // then wraps every screen in the theme.
 // On first start only the welcome flow is open; once the patient taps
 // "Go to the home screen" (setupDone), only the app itself is open.
-// The basket and language providers are added here in later steps.
+// The basket wraps everything, so every screen and the Basket button
+// in the top bar see the same items.
 import {
   PublicSans_400Regular,
   PublicSans_600SemiBold,
@@ -12,6 +13,7 @@ import {
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
+import { BasketProvider } from "../context/BasketContext";
 import { DisplayProvider, useDisplay } from "../context/DisplayContext";
 import { makeTheme } from "../theme";
 
@@ -27,7 +29,9 @@ export default function RootLayout() {
 
   return (
     <DisplayProvider>
-      <ThemedApp />
+      <BasketProvider>
+        <ThemedApp />
+      </BasketProvider>
     </DisplayProvider>
   );
 }

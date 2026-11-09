@@ -11,21 +11,22 @@ import {
 } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { I18nManager, Pressable, Text, View } from "react-native";
+import { useBasket } from "../context/BasketContext";
 import { useAppTheme } from "../theme";
 
 type Props = {
   variant: "home" | "back";
   onBack?: () => void; // default: go to the previous screen
   showBasket?: boolean; // false on screens like the welcome flow
-  basketCount?: number; // comes from the basket in Phase 4
 };
 
 export function TopBar({
   variant,
   onBack,
   showBasket = true,
-  basketCount = 0,
 }: Props) {
+  // The counter reads the basket itself, so no screen has to pass it in.
+  const { count: basketCount } = useBasket();
   const { t } = useTranslation();
   const router = useRouter();
   const { colors, text, spacing, radius, minTouch } = useAppTheme().app;

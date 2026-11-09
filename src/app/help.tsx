@@ -25,7 +25,7 @@ export default function AskARealPerson() {
   }
 
   return (
-    <Screen topBar={<TopBar variant="back" basketCount={0} />} showAsk={false}>
+    <Screen topBar={<TopBar variant="back" />} showAsk={false}>
       <Text
         accessibilityRole="header"
         style={[text.title, { color: colors.text }]}

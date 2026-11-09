@@ -3,6 +3,7 @@
     "appName": "Zorgwinkel",
     "back": "Terug",
     "basket": "Mandje",
+    "basketCount_one": "Mandje, {{count}} ding",
     "basketCount": "Mandje, {{count}} dingen",
     "next": "Volgende",
     "done": "Klaar",
@@ -58,7 +59,8 @@
     "appointments": "Afspraken",
     "medicines": "Medicijnen",
     "messages": "Berichten",
-    "askSomeone": "Vraag iemand"
+    "askSomeone": "Vraag iemand",
+    "appointmentWhen": "{{day}} om {{time}}"
   },
   "practice": {
     "openingHours": "Open maandag tot en met vrijdag, 8:00 tot 17:00",
@@ -74,5 +76,85 @@
   "callback": {
     "title": "Klaar. De praktijk belt u terug.",
     "text": "Meestal binnen 2 uur op werkdagen. Houd uw telefoon in de buurt."
+  },
+  "appointment": {
+    "whoTitle": "Wie wilt u zien?",
+    "gp": "Uw huisarts",
+    "gpNoName": "Uw eigen huisarts",
+    "nurse": "Praktijkverpleegkundige",
+    "nurseNote": "Wie het eerst kan",
+    "chooseFirst": "Kies eerst een optie.",
+    "reasonTitle": "Waarvoor is de afspraak?",
+    "reasons": {
+      "checkup": "Een controle",
+      "pain": "Pijn of klachten",
+      "other": "Iets anders",
+      "tell_doctor": "Dat vertel ik liever aan de huisarts"
+    },
+    "noteLabel": "Schrijf er een paar woorden bij, als u wilt",
+    "notePlaceholder": "U kunt dit leeg laten",
+    "whenTitle": "Wanneer wilt u komen?",
+    "chooseDay": "Kies een dag",
+    "chooseTime": "Kies een dagdeel",
+    "morning": "Ochtend",
+    "afternoon": "Middag",
+    "addToBasket": "In het mandje doen"
+  },
+  "added": {
+    "title": "In uw mandje gedaan",
+    "notSentYet": "Het wordt pas verstuurd als u uw mandje nakijkt.",
+    "goToBasket": "Naar het mandje"
+  },
+  "basketItem": {
+    "appointmentWith": "Afspraak met {{name}}",
+    "yourGp": "uw huisarts",
+    "nurse": "de praktijkverpleegkundige",
+    "repeatMedicine": "Herhaalrecept"
+  },
+  "basket": {
+    "title": "Uw mandje",
+    "subtitle": "Kijk uw aanvraag na voordat u die verstuurt.",
+    "change": "Wijzigen",
+    "remove": "Verwijderen",
+    "changeA11y": "Deze afspraak wijzigen",
+    "removeA11y": "Dit uit uw mandje halen",
+    "removeTitle": "Uit uw mandje halen?",
+    "keep": "Laten staan",
+    "send": "Aanvraag versturen",
+    "empty": "Uw mandje is leeg."
+  },
+  "confirm": {
+    "title": "Bevestig dat u het bent",
+    "text": "Log één keer in met DigiD, dezelfde inlog als voor uw belasting of pensioen. Dan weet uw huisartsenpraktijk dat de aanvraag van u komt.",
+    "privacy": "Alleen u en uw huisartsenpraktijk kunnen uw medicijnen en afspraken zien.",
+    "rememberMe": "Onthoud mij op deze telefoon. U hoeft dan niet opnieuw in te loggen.",
+    "loginDigid": "Inloggen met DigiD",
+    "noDigid": "Ik heb geen DigiD"
+  },
+  "digid": {
+    "title": "DigiD",
+    "simulation": "Testversie: elke 5 cijfers werken. Uw pincode wordt niet bewaard of verstuurd.",
+    "enterPin": "Vul uw pincode van 5 cijfers in",
+    "pinProgress": "{{count}} van de 5 cijfers ingevuld",
+    "delete": "Wissen",
+    "deleteA11y": "Laatste cijfer wissen",
+    "loggingIn": "Bezig met inloggen…",
+    "error": "Inloggen lukte niet. Controleer uw internetverbinding en probeer het opnieuw."
+  },
+  "welcomeBack": {
+    "title": "Welkom, {{name}}.",
+    "titleNoName": "Welkom.",
+    "text": "Uw gegevens komen van DigiD en uw huisartsenpraktijk.",
+    "continue": "Doorgaan en aanvraag versturen"
+  },
+  "send": {
+    "sending": "Bezig met versturen…",
+    "error": "Versturen lukte niet. Er is niets verstuurd en uw mandje is er nog. Controleer uw internetverbinding en probeer het opnieuw.",
+    "tryAgain": "Opnieuw proberen"
+  },
+  "receipt": {
+    "title": "Klaar. Uw aanvraag is verstuurd.",
+    "text": "De praktijk stuurt u binnen 1 werkdag een bericht.",
+    "whatYouSent": "Wat u hebt verstuurd"
   }
 }

@@ -1,7 +1,7 @@
-// 0.1 Home: the greeting, the "Book everything here" note, the tiles
-// and the GP practice. The next appointment and the patient's name
-// (0.2) are added in Phase 4.
-import { useRouter } from "expo-router";
+// 0.1 / 0.2 Home: the greeting, the next appointment once the practice
+// has confirmed one, the "Book everything here" note, the tiles and the
+// GP practice. Once logged in, the greeting uses the patient's name.
+import { useFocusEffect, useRouter } from "expo-router";
 import {
   Building2,
   CalendarDays,
@@ -11,12 +11,20 @@ import {
   Pill,
   User,
 } from "lucide-react-native";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
 import { AppButton } from "../components/AppButton";
 import { Screen } from "../components/Screen";
 import { TileGrid } from "../components/TileGrid";
 import { TopBar } from "../components/TopBar";
+import {
+  getNextAppointment,
+  getProfile,
+  type NextAppointment,
+  type Profile,
+} from "../lib/api";
+import { formatDay } from "../lib/dates";
 import { practice } from "../lib/practice";
 import { useAppTheme } from "../theme";
 
@@ -32,6 +40,26 @@ export default function Home() {
   const router = useRouter();
   const { colors, text, spacing, radius, mode } = useAppTheme().app;
 
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [next, setNext] = useState<NextAppointment | null>(null);
+
+  // Load every time Home comes into view, not only once: after logging
+  // in or after the practice confirmed a request, Home is up to date.
+  useFocusEffect(
+    useCallback(() => {
+      let active = true;
+      getProfile()
+        .then((p) => active && setProfile(p))
+        .catch(() => {}); // no connection: Home works without the name
+      getNextAppointment()
+        .then((a) => active && setNext(a))
+        .catch(() => {}); // no connection: just no appointment card
+      return () => {
+        active = false;
+      };
+    }, []),
+  );
+
   const now = new Date();
   // English uses the British order (day before month), as in the Figma design.
   const locale = i18n.language === "en" ? "en-GB" : i18n.language;
@@ -41,8 +69,21 @@ export default function Home() {
     month: "long",
   });
 
+  // "Thursday 12 November at 10:30"
+  function appointmentWhen(iso: string) {
+    const d = new Date(iso);
+    const time = d.toLocaleTimeString(locale, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return t("home.appointmentWhen", {
+      day: formatDay(d, i18n.language),
+      time,
+    });
+  }
+
   return (
-    <Screen topBar={<TopBar variant="home" basketCount={0} />}>
+    <Screen topBar={<TopBar variant="home" />}>
       {/* Language and display, and today's date */}
       <View
         style={{
@@ -66,8 +107,58 @@ export default function Home() {
         accessibilityRole="header"
         style={[text.title, { color: colors.text }]}
       >
-        {t(greetingKey(now.getHours()))}
+        {profile
+          ? t(`${greetingKey(now.getHours())}Name`, { name: profile.full_name })
+          : t(greetingKey(now.getHours()))}
       </Text>
+      {/* 0.2 Your next appointment: only when the practice confirmed one. */}
+      {next && (
+        <View
+          accessible
+          accessibilityLabel={`${t("home.nextAppointment")}: ${
+            next.provider === "nurse"
+              ? t("appointment.nurse")
+              : (profile?.gp_name ?? t("appointment.gp"))
+          }, ${appointmentWhen(next.confirmed_time)}`}
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: spacing.md,
+            padding: spacing.md,
+            borderRadius: radius.md,
+            borderWidth: 2,
+            borderColor: colors.primary,
+            backgroundColor: colors.surface,
+          }}
+        >
+          <View
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: radius.sm,
+              backgroundColor: colors.iconBox,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CalendarDays size={28} color={colors.primary} strokeWidth={1.75} />
+          </View>
+          <View style={{ flex: 1, gap: 2 }}>
+            <Text style={[text.label, { color: colors.textMuted }]}>
+              {t("home.nextAppointment")}
+            </Text>
+            <Text style={[text.bodyStrong, { color: colors.text }]}>
+              {next.provider === "nurse"
+                ? t("appointment.nurse")
+                : (profile?.gp_name ?? t("appointment.gp"))}
+            </Text>
+            <Text style={[text.body, { color: colors.text }]}>
+              {appointmentWhen(next.confirmed_time)}
+            </Text>
+          </View>
+        </View>
+      )}
+
       <Text
         accessibilityRole="header"
         style={[text.heading, { color: colors.text }]}
