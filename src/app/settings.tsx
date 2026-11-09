@@ -17,12 +17,12 @@ export default function Settings() {
   const { update } = useDisplay();
   const { colors, text } = useAppTheme().app;
 
-  // Only for testing: start the welcome flow again.
-  // __DEV__ is true in Expo Go and false in a real build, so patients never see this.
+  // Only for testing: start the welcome flow again, logged out.
+  // No navigation here: Stack.Protected in _layout.tsx closes Home and
+  // Settings once setupDone is false, and opens Welcome.
   async function restartSetup() {
-    await signOut(); // a real first time: also logged out
+    await signOut();
     update({ setupDone: false });
-    router.replace("/welcome");
   }
 
   return (

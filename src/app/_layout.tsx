@@ -52,13 +52,18 @@ function ThemedApp() {
           contentStyle: { backgroundColor: theme.app.colors.background },
         }}
       >
-        {/* First start: Welcome, Choose your language, Make the app easy to read, You're ready. */}
-        <Stack.Protected guard={!setupDone}>
+        {/* First start: Welcome ... Once the setup is done, Welcome is
+            closed and goes to Home. */}
+        <Stack.Protected guard={!setupDone} redirectTo="/">
           <Stack.Screen name="welcome" />
         </Stack.Protected>
-        {/* After the setup: Home. More screens are added here in later steps. */}
-        <Stack.Protected guard={setupDone}>
+        {/* After the setup: Home and Settings. Before the setup is done
+            (first start, or after Restart setup), they send the patient to
+            Welcome. Without redirectTo, Expo Router picks the shortest
+            screen name that is open, which was /help. */}
+        <Stack.Protected guard={setupDone} redirectTo="/welcome">
           <Stack.Screen name="index" />
+          <Stack.Screen name="settings" />
         </Stack.Protected>
       </Stack>
     </PaperProvider>

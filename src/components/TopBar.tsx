@@ -3,6 +3,8 @@
 // - elsewhere: "Back" on the left
 // and the Basket button with its counter on the right.
 import { useRouter } from "expo-router";
+import { useDisplay } from "../context/DisplayContext";
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -20,11 +22,7 @@ type Props = {
   showBasket?: boolean; // false on screens like the welcome flow
 };
 
-export function TopBar({
-  variant,
-  onBack,
-  showBasket = true,
-}: Props) {
+export function TopBar({ variant, onBack, showBasket = true }: Props) {
   // The counter reads the basket itself, so no screen has to pass it in.
   const { count: basketCount } = useBasket();
   const { t } = useTranslation();
@@ -32,6 +30,12 @@ export function TopBar({
   const { colors, text, spacing, radius, minTouch } = useAppTheme().app;
   // In Arabic (right to left) "back" points to the right.
   const BackArrow = I18nManager.isRTL ? ArrowRight : ArrowLeft;
+  const { setupDone } = useDisplay();
+
+  function goBack() {
+    if (router.canGoBack()) router.back();
+    else router.replace(setupDone ? "/" : "/welcome");
+  }
 
   return (
     <View
@@ -83,7 +87,7 @@ export function TopBar({
         </View>
       ) : (
         <Pressable
-          onPress={onBack ?? (() => router.back())}
+          onPress={onBack ?? goBack}
           accessibilityRole="button"
           accessibilityLabel={t("common.back")}
           hitSlop={8}
