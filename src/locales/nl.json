@@ -145,7 +145,8 @@
     "title": "Welkom, {{name}}.",
     "titleNoName": "Welkom.",
     "text": "Uw gegevens komen van DigiD en uw huisartsenpraktijk.",
-    "continue": "Doorgaan en aanvraag versturen"
+    "continue": "Doorgaan en aanvraag versturen",
+    "continueOnly": "Doorgaan"
   },
   "send": {
     "sending": "Bezig met versturen…",
@@ -156,5 +157,12 @@
     "title": "Klaar. Uw aanvraag is verstuurd.",
     "text": "De praktijk stuurt u binnen 1 werkdag een bericht.",
     "whatYouSent": "Wat u hebt verstuurd"
+  },
+  "medicines": {
+    "title": "Uw medicijnen",
+    "subtitle": "Kies het medicijn waarvan u meer nodig hebt.",
+    "reorder": "Opnieuw bestellen",
+    "reorderA11y": "{{name}} opnieuw bestellen",
+    "loadError": "Uw medicijnen konden niet worden geladen. Controleer uw internetverbinding en probeer het opnieuw."
   }
 }

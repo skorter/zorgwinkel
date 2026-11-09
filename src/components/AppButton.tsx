@@ -7,6 +7,7 @@ import { useAppTheme } from "../theme";
 
 type Props = {
   label: string;
+  accessibilityLabel?: string; // when the label alone is not clear, e.g. "Reorder Simvastatin 20 mg"
   onPress: () => void;
   variant?: "primary" | "outline";
   size?: "normal" | "large"; // large = 20 pt text, for "Ask a real person"
@@ -17,6 +18,7 @@ type Props = {
 
 export function AppButton({
   label,
+  accessibilityLabel,
   onPress,
   variant = "primary",
   size = "normal",
@@ -34,7 +36,7 @@ export function AppButton({
       onPress={onPress}
       disabled={disabled}
       accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityLabel={accessibilityLabel ?? label}
       accessibilityHint={accessibilityHint}
       accessibilityState={{ disabled }}
       style={({ pressed }) => ({

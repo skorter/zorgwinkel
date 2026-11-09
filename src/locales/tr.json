@@ -144,7 +144,8 @@
     "title": "Hoş geldiniz, {{name}}.",
     "titleNoName": "Hoş geldiniz.",
     "text": "Bilgileriniz DigiD'den ve muayenehanenizden gelir.",
-    "continue": "Devam et ve talebi gönder"
+    "continue": "Devam et ve talebi gönder",
+    "continueOnly": "Devam et"
   },
   "send": {
     "sending": "Gönderiliyor…",
@@ -155,5 +156,12 @@
     "title": "Tamam. Talebiniz gönderildi.",
     "text": "Muayenehane size 1 iş günü içinde mesaj gönderecek.",
     "whatYouSent": "Gönderdikleriniz"
+  },
+  "medicines": {
+    "title": "İlaçlarınız",
+    "subtitle": "Daha fazla ihtiyacınız olan ilacı seçin.",
+    "reorder": "Yeniden sipariş et",
+    "reorderA11y": "{{name}} yeniden sipariş et",
+    "loadError": "İlaçlarınız yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin."
   }
 }

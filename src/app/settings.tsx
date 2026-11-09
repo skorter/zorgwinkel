@@ -8,6 +8,7 @@ import { DisplaySettingsForm } from "../components/DisplaySettingsForm";
 import { Screen } from "../components/Screen";
 import { TopBar } from "../components/TopBar";
 import { useDisplay } from "../context/DisplayContext";
+import { signOut } from "../lib/api";
 import { useAppTheme } from "../theme";
 
 export default function Settings() {
@@ -18,7 +19,8 @@ export default function Settings() {
 
   // Only for testing: start the welcome flow again.
   // __DEV__ is true in Expo Go and false in a real build, so patients never see this.
-  function restartSetup() {
+  async function restartSetup() {
+    await signOut(); // a real first time: also logged out
     update({ setupDone: false });
     router.replace("/welcome");
   }

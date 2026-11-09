@@ -2,7 +2,7 @@
 // basket: they log in once with (simulated) DigiD. With Remember me
 // ticked, the login stays on this phone and this screen is skipped
 // next time. Remember me is passed on to the next screens as "remember".
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { KeyRound } from "lucide-react-native";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,9 @@ export default function ConfirmItIsYou() {
   const { colors, text, spacing } = useAppTheme().app;
   // Ticked by default, as in Figma: logging in every time is a hurdle.
   const [remember, setRemember] = useState(true);
+  // "medicines" when the patient came from Your medicines (only log in),
+  // "send" when they came from the basket (log in and send).
+  const { next } = useLocalSearchParams<{ next?: string }>();
 
   return (
     <Screen
@@ -32,7 +35,10 @@ export default function ConfirmItIsYou() {
             onPress={() =>
               router.push({
                 pathname: "/confirm/digid",
-                params: { remember: remember ? "1" : "0" },
+                params: {
+                  remember: remember ? "1" : "0",
+                  next: next ?? "send",
+                },
               })
             }
           />
