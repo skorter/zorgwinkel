@@ -15,7 +15,12 @@ import { AppButton } from "../components/AppButton";
 import { Screen } from "../components/Screen";
 import { TopBar } from "../components/TopBar";
 import { useBasket } from "../context/BasketContext";
-import { getMyMedicines, isOpen, type Medicine } from "../lib/api";
+import {
+  getMyMedicines,
+  isOpen,
+  watchRequests,
+  type Medicine,
+} from "../lib/api";
 import { useAppTheme } from "../theme";
 
 export default function YourMedicines() {
@@ -55,6 +60,12 @@ export default function YourMedicines() {
   }, [router]);
 
   useFocusEffect(load);
+
+  // Live status: while this screen is open, reload the list whenever
+  // the practice changes a request. watchRequests returns its own
+  // "stop" function, and useFocusEffect calls that when the patient
+  // leaves the screen.
+  useFocusEffect(useCallback(() => watchRequests(load), [load]));
 
   function reorder(m: Medicine) {
     const id = add({

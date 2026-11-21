@@ -165,3 +165,26 @@ export function isOpen(
 ): status is "requested" | "ready" {
   return status === "requested" || status === "ready";
 }
+
+// Live status (technical design: watchRequests). Calls onChange every
+// time the practice changes a request, for example requested -> ready.
+// Returns a function that stops listening; the screen calls it when
+// the patient leaves, so the phone doesn't keep a connection open.
+// Row level security applies here too: Realtime only sends changes to
+// rows this patient is allowed to read.
+export function watchRequests(onChange: () => void): () => void {
+  const channel = supabase
+    // A new name each time, so a fresh channel is made when the patient
+    // comes back to the screen, instead of reusing a closed one.
+    .channel(`requests-${Date.now()}`)
+    .on(
+      "postgres_changes",
+      { event: "UPDATE", schema: "public", table: "medicine_requests" },
+      () => onChange(),
+    )
+    .subscribe();
+
+  return () => {
+    void supabase.removeChannel(channel);
+  };
+}
