@@ -160,6 +160,8 @@ export async function getMyMedicines(): Promise<Medicine[] | null> {
 
 // A request is "open" while the practice is still busy with it or the
 // medicine waits at the pharmacy. Then Reorder is replaced by the label.
-export function isOpen(status: MedicineStatus | null): boolean {
+export function isOpen(
+  status: MedicineStatus | null,
+): status is "requested" | "ready" {
   return status === "requested" || status === "ready";
 }

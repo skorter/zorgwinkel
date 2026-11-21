@@ -162,6 +162,8 @@
     "subtitle": "Daha fazla ihtiyacınız olan ilacı seçin.",
     "reorder": "Yeniden sipariş et",
     "reorderA11y": "{{name}} yeniden sipariş et",
-    "loadError": "İlaçlarınız yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin."
+    "loadError": "İlaçlarınız yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+    "requested": "Talep edildi",
+    "ready": "Teslim almaya hazır"
   }
 }

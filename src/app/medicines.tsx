@@ -1,10 +1,13 @@
 // 2.1 Your medicines: the patient's own repeat list from Supabase.
 // Reorder puts the medicine in the basket and opens Added to your
 // basket (2.2); nothing is sent yet.
+// While a request is open (requested or ready), a status label takes
+// the place of Reorder, so the same medicine can't be asked for twice.
 // Only a logged-in patient can see their medicines (row level
 // security), so the first time this screen sends the patient to
 // Confirm it is you, with next=medicines so they come back here.
 import { useFocusEffect, useRouter } from "expo-router";
+import { Clock, PackageCheck } from "lucide-react-native";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Text, View } from "react-native";
@@ -12,7 +15,7 @@ import { AppButton } from "../components/AppButton";
 import { Screen } from "../components/Screen";
 import { TopBar } from "../components/TopBar";
 import { useBasket } from "../context/BasketContext";
-import { getMyMedicines, type Medicine } from "../lib/api";
+import { getMyMedicines, isOpen, type Medicine } from "../lib/api";
 import { useAppTheme } from "../theme";
 
 export default function YourMedicines() {
@@ -117,16 +120,55 @@ export default function YourMedicines() {
                 {m.how_often}
               </Text>
             </View>
-            <AppButton
-              label={t("medicines.reorder")}
-              accessibilityLabel={t("medicines.reorderA11y", {
-                name: `${m.name} ${m.strength}`,
-              })}
-              onPress={() => reorder(m)}
-            />
+            {isOpen(m.status) ? (
+              <StatusLabel status={m.status} />
+            ) : (
+              <AppButton
+                label={t("medicines.reorder")}
+                accessibilityLabel={t("medicines.reorderA11y", {
+                  name: `${m.name} ${m.strength}`,
+                })}
+                onPress={() => reorder(m)}
+              />
+            )}
           </View>
         ))
       )}
     </Screen>
+  );
+}
+
+// "Requested" or "Ready for pickup", in place of Reorder while a request
+// is open. Deliberately NOT a button: a soft background, no border and
+// no press effect, so nobody taps it expecting something to happen.
+function StatusLabel({ status }: { status: "requested" | "ready" }) {
+  const { t } = useTranslation();
+  const { colors, text, spacing, radius, minTouch } = useAppTheme().app;
+  const ready = status === "ready";
+  const Icon = ready ? PackageCheck : Clock;
+  // Ready: the app's green, the good news. Requested: the yellow of the
+  // "Book everything here" note, still waiting.
+  const color = ready ? colors.primary : colors.noteText;
+  const background = ready ? colors.iconBox : colors.note;
+
+  return (
+    <View
+      accessible
+      accessibilityLabel={t(`medicines.${status}`)}
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        gap: spacing.sm,
+        minHeight: minTouch,
+        paddingHorizontal: spacing.md,
+        borderRadius: radius.md,
+        backgroundColor: background,
+      }}
+    >
+      <Icon size={text.bodyStrong.fontSize} color={color} strokeWidth={2} />
+      <Text style={[text.bodyStrong, { color }]}>
+        {t(`medicines.${status}`)}
+      </Text>
+    </View>
   );
 }

@@ -163,6 +163,8 @@
     "subtitle": "Choose the medicine you need more of.",
     "reorder": "Reorder",
     "reorderA11y": "Reorder {{name}}",
-    "loadError": "Your medicines could not be loaded. Check your internet connection and try again."
+    "loadError": "Your medicines could not be loaded. Check your internet connection and try again.",
+    "requested": "Requested",
+    "ready": "Ready for pickup"
   }
 }
