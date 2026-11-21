@@ -7,7 +7,7 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Text, View } from "react-native";
+import { Text, useWindowDimensions, View } from "react-native";
 import { AppButton } from "../../components/AppButton";
 import { OptionButton } from "../../components/OptionButton";
 import { Screen } from "../../components/Screen";
@@ -65,6 +65,12 @@ export default function WhenWouldYouLikeToCome() {
   const [partOfDay, setPartOfDay] = useState<PartOfDay | null>(
     before?.partOfDay ?? null,
   );
+
+  // How wide one part-of-day button needs to be before the two sit side
+  // by side. Grows with the app's text size AND the phone's own font size
+  // (fontScale), so with large text they stack instead of breaking words.
+  const { fontScale } = useWindowDimensions();
+  const partMinWidth = text.bodyStrong.fontSize * fontScale * 9;
 
   const dayLabel = (d: Date) => formatDay(d, i18n.language);
 
@@ -135,7 +141,7 @@ export default function WhenWouldYouLikeToCome() {
         style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}
       >
         {(["morning", "afternoon"] as PartOfDay[]).map((p) => (
-          <View key={p} style={{ flexGrow: 1, flexBasis: 140 }}>
+          <View key={p} style={{ flexGrow: 1, flexBasis: partMinWidth }}>
             <OptionButton
               label={t(`appointment.${p}`)}
               selected={partOfDay === p}

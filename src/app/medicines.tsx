@@ -178,13 +178,14 @@ function StatusLabel({ status }: { status: "requested" | "ready" }) {
         alignItems: "center",
         gap: spacing.sm,
         minHeight: minTouch,
+        maxWidth: "100%",
         paddingHorizontal: spacing.md,
         borderRadius: radius.md,
         backgroundColor: background,
       }}
     >
       <Icon size={text.bodyStrong.fontSize} color={color} strokeWidth={2} />
-      <Text style={[text.bodyStrong, { color }]}>
+      <Text style={[text.bodyStrong, { color, flexShrink: 1 }]}>
         {t(`medicines.${status}`)}
       </Text>
     </View>
