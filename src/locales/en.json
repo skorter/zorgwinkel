@@ -166,5 +166,9 @@
     "loadError": "Your medicines could not be loaded. Check your internet connection and try again.",
     "requested": "Requested",
     "ready": "Ready for pickup"
+  },
+  "notification": {
+    "readyTitle": "Your medicine is ready",
+    "readyBody": "{{name}} is ready. You can pick it up at the pharmacy."
   }
 }

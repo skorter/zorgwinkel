@@ -8,7 +8,7 @@
 // Confirm it is you, with next=medicines so they come back here.
 import { useFocusEffect, useRouter } from "expo-router";
 import { Clock, PackageCheck } from "lucide-react-native";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Text, View } from "react-native";
 import { AppButton } from "../components/AppButton";
@@ -21,6 +21,7 @@ import {
   watchRequests,
   type Medicine,
 } from "../lib/api";
+import { askPermission } from "../lib/notifications";
 import { useAppTheme } from "../theme";
 
 export default function YourMedicines() {
@@ -58,6 +59,12 @@ export default function YourMedicines() {
       active = false;
     };
   }, [router]);
+
+  // Ask for notifications here, where it's clear why: the patient is
+  // looking at their medicines and can see a status label.
+  useEffect(() => {
+    void askPermission();
+  }, []);
 
   useFocusEffect(load);
 

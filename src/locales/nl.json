@@ -166,5 +166,9 @@
     "loadError": "Uw medicijnen konden niet worden geladen. Controleer uw internetverbinding en probeer het opnieuw.",
     "requested": "Aangevraagd",
     "ready": "Klaar om op te halen"
+  },
+  "notification": {
+    "readyTitle": "Uw medicijn ligt klaar",
+    "readyBody": "{{name}} ligt klaar. U kunt het ophalen bij de apotheek."
   }
 }

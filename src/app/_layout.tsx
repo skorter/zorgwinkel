@@ -13,6 +13,7 @@ import {
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
+import { ReadyNotifier } from "../components/ReadyNotifier";
 import { BasketProvider } from "../context/BasketContext";
 import { DisplayProvider, useDisplay } from "../context/DisplayContext";
 import { makeTheme } from "../theme";
@@ -45,6 +46,7 @@ function ThemedApp() {
   return (
     <PaperProvider theme={theme}>
       <StatusBar style={theme.dark ? "light" : "dark"} />
+      <ReadyNotifier />
       {/* No default header: every screen has its own top bar from Figma. */}
       <Stack
         screenOptions={{

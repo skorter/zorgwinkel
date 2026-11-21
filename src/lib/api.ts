@@ -166,25 +166,53 @@ export function isOpen(
   return status === "requested" || status === "ready";
 }
 
+/// What changed in one request, passed on by watchRequests.
+export type RequestChange = {
+  medicineId: string;
+  status: MedicineStatus;
+};
+
 // Live status (technical design: watchRequests). Calls onChange every
-// time the practice changes a request, for example requested -> ready.
+// time the practice changes a request, for example requested -> ready,
+// with the medicine and its new status.
 // Returns a function that stops listening; the screen calls it when
 // the patient leaves, so the phone doesn't keep a connection open.
 // Row level security applies here too: Realtime only sends changes to
 // rows this patient is allowed to read.
-export function watchRequests(onChange: () => void): () => void {
+export function watchRequests(
+  onChange: (change: RequestChange) => void,
+): () => void {
   const channel = supabase
     // A new name each time, so a fresh channel is made when the patient
-    // comes back to the screen, instead of reusing a closed one.
+    // comes back, instead of reusing a closed one.
     .channel(`requests-${Date.now()}`)
     .on(
       "postgres_changes",
       { event: "UPDATE", schema: "public", table: "medicine_requests" },
-      () => onChange(),
+      (payload) =>
+        onChange({
+          medicineId: payload.new.medicine_id as string,
+          status: payload.new.status as MedicineStatus,
+        }),
     )
     .subscribe();
 
   return () => {
     void supabase.removeChannel(channel);
   };
+}
+
+// One medicine's name and strength, for the "ready" notification.
+// null if it can't be found (or isn't this patient's: row level security).
+export async function getMedicine(
+  id: string,
+): Promise<{ name: string; strength: string } | null> {
+  const { data, error } = await supabase
+    .from("medicines")
+    .select("name, strength")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
 }

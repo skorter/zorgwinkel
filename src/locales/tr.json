@@ -165,5 +165,9 @@
     "loadError": "İlaçlarınız yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.",
     "requested": "Talep edildi",
     "ready": "Teslim almaya hazır"
+  },
+  "notification": {
+    "readyTitle": "İlacınız hazır",
+    "readyBody": "{{name}} hazır. Eczaneden teslim alabilirsiniz."
   }
 }
