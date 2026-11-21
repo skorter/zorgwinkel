@@ -190,7 +190,13 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <Check size={18} color={colors.noteText} strokeWidth={3} />
+          {/* In high contrast the circle and noteText are the same yellow,
+              so the check would vanish: draw it in black there instead. */}
+          <Check
+            size={18}
+            color={mode === "highContrast" ? colors.onPrimary : colors.noteText}
+            strokeWidth={3}
+          />
         </View>
         <View style={{ flex: 1 }}>
           <Text style={[text.bodyStrong, { color: colors.noteText }]}>
