@@ -27,7 +27,10 @@ export default function DigiD() {
   const { t } = useTranslation();
   const router = useRouter();
   const { colors, text, spacing, radius, minTouch } = useAppTheme().app;
-  const { remember } = useLocalSearchParams<{ remember?: string }>();
+  const { remember, next } = useLocalSearchParams<{
+    remember?: string;
+    next?: string;
+  }>();
 
   const [pin, setPin] = useState("");
   const [busy, setBusy] = useState(false);
@@ -41,7 +44,7 @@ export default function DigiD() {
       // replace: Back on the next screen should not return to the PIN.
       router.replace({
         pathname: "/confirm/welcome",
-        params: { remember: remember ?? "1" },
+        params: { remember: remember ?? "1", next: next ?? "send" },
       });
     } catch {
       setFailed(true);

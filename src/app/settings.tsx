@@ -8,6 +8,7 @@ import { DisplaySettingsForm } from "../components/DisplaySettingsForm";
 import { Screen } from "../components/Screen";
 import { TopBar } from "../components/TopBar";
 import { useDisplay } from "../context/DisplayContext";
+import { signOut } from "../lib/api";
 import { useAppTheme } from "../theme";
 
 export default function Settings() {
@@ -16,11 +17,12 @@ export default function Settings() {
   const { update } = useDisplay();
   const { colors, text } = useAppTheme().app;
 
-  // Only for testing: start the welcome flow again.
-  // __DEV__ is true in Expo Go and false in a real build, so patients never see this.
-  function restartSetup() {
+  // Only for testing: start the welcome flow again, logged out.
+  // No navigation here: Stack.Protected in _layout.tsx closes Home and
+  // Settings once setupDone is false, and opens Welcome.
+  async function restartSetup() {
+    await signOut();
     update({ setupDone: false });
-    router.replace("/welcome");
   }
 
   return (

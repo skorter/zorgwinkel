@@ -2,7 +2,7 @@
 // patient sees that the app now knows who they are.
 // "Continue and send request" sends the basket (useSendBasket). If that
 // fails, the patient stays here with the basket intact and can try again.
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { Check } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
@@ -21,7 +21,18 @@ export default function WelcomeAfterLogin() {
   const { send, sending, failed } = useSendBasket();
   // "0" when Remember me was not ticked on 1.6: then the patient is
   // logged out again right after sending.
-  const { remember } = useLocalSearchParams<{ remember?: string }>();
+  const router = useRouter();
+  const { remember, next } = useLocalSearchParams<{
+    remember?: string;
+    next?: string;
+  }>();
+  // From Your medicines: only log in, there is nothing to send yet.
+  const onlyLogin = next === "medicines";
+
+  function goToMedicines() {
+    router.dismissAll(); // close the login screens, so Back goes home
+    router.push("/medicines");
+  }
 
   return (
     <Screen topBar={<TopBar variant="back" showBasket={false} />}>
@@ -55,18 +66,27 @@ export default function WelcomeAfterLogin() {
         </Text>
       </View>
 
-      {failed && <SendError />}
-      <AppButton
-        label={
-          sending
-            ? t("send.sending")
-            : failed
-              ? t("send.tryAgain")
-              : t("welcomeBack.continue")
-        }
-        onPress={() => send(remember !== "0")}
-        disabled={sending}
-      />
+      {onlyLogin ? (
+        <AppButton
+          label={t("welcomeBack.continueOnly")}
+          onPress={goToMedicines}
+        />
+      ) : (
+        <>
+          {failed && <SendError />}
+          <AppButton
+            label={
+              sending
+                ? t("send.sending")
+                : failed
+                  ? t("send.tryAgain")
+                  : t("welcomeBack.continue")
+            }
+            onPress={() => send(remember !== "0")}
+            disabled={sending}
+          />
+        </>
+      )}
     </Screen>
   );
 }
