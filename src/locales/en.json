@@ -170,5 +170,9 @@
   "notification": {
     "readyTitle": "Your medicine is ready",
     "readyBody": "{{name}} is ready. You can pick it up at the pharmacy."
+  },
+  "messages": {
+    "comingSoon": "Coming soon",
+    "text": "You can't read messages from the practice in the app yet. Do you have a question? Tap Ask a real person below."
   }
 }

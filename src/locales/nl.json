@@ -170,5 +170,9 @@
   "notification": {
     "readyTitle": "Uw medicijn ligt klaar",
     "readyBody": "{{name}} ligt klaar. U kunt het ophalen bij de apotheek."
+  },
+  "messages": {
+    "comingSoon": "Binnenkort beschikbaar",
+    "text": "U kunt berichten van de praktijk nog niet in de app lezen. Hebt u een vraag? Tik hieronder op Vraag het een mens."
   }
 }
