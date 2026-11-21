@@ -54,6 +54,8 @@ export async function showReady(name: string): Promise<void> {
     content: {
       title: i18n.t("notification.readyTitle"),
       body: i18n.t("notification.readyBody", { name }),
+      // Where a tap leads: ReadyNotifier reads this and opens the screen.
+      data: { url: "/medicines" },
     },
     trigger: null, // null = now, not at a later time
   });

@@ -1,6 +1,8 @@
 // Listens for "ready" on every screen, not only on Your medicines:
 // the notification matters most when the patient is somewhere else.
 // Only while someone is logged in; it shows nothing on screen itself.
+import * as Notifications from "expo-notifications";
+import { router } from "expo-router";
 import { useEffect } from "react";
 import { getMedicine, watchRequests, type RequestChange } from "../lib/api";
 import { showReady } from "../lib/notifications";
@@ -23,6 +25,19 @@ export function ReadyNotifier() {
       stopWatching?.();
       data.subscription.unsubscribe();
     };
+  }, []);
+
+  // Tapping the notification opens Your medicines, where the patient
+  // sees "Ready for pickup". Works while the app is open or in the
+  // background.
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        const url = response.notification.request.content.data?.url;
+        if (url === "/medicines") router.navigate("/medicines");
+      },
+    );
+    return () => subscription.remove();
   }, []);
 
   return null; // nothing to show: this component only listens
